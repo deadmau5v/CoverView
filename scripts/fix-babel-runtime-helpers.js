@@ -11,31 +11,35 @@ const helpersDir = path.resolve(
   'esm'
 );
 
-const targets = [
-  'interopRequireWildcard.js',
-  'possibleConstructorReturn.js',
-  'wrapRegExp.js',
-  'toPropertyKey.js',
-  'toPrimitive.js'
-];
+if (!fs.existsSync(helpersDir)) {
+  console.log('Babel helpers directory not found, skipping patch.');
+  return;
+}
 
-const search = '../../helpers/esm/typeof';
-const replacement = `${search}.js`;
+const files = fs.readdirSync(helpersDir);
 
-targets.forEach((fileName) => {
+files.forEach((fileName) => {
+  if (path.extname(fileName) !== '.js') {
+    return;
+  }
+
   const filePath = path.join(helpersDir, fileName);
+  const originalContent = fs.readFileSync(filePath, 'utf8');
 
-  if (!fs.existsSync(filePath)) {
+  // Regex to find relative imports (e.g., from './utils') and add the .js extension.
+  // It looks for `from` statements with relative paths that do not already have an extension.
+  const regex = /(from\s+['"])(\.\.?\/[^"']+?)(?<!\.js)(['"])/g;
+
+  if (!regex.test(originalContent)) {
     return;
   }
 
-  const original = fs.readFileSync(filePath, 'utf8');
+  // Reset regex state before using replace
+  regex.lastIndex = 0;
+  const updatedContent = originalContent.replace(regex, '$1$2.js$3');
 
-  if (!original.includes(search) || original.includes(replacement)) {
-    return;
+  if (originalContent !== updatedContent) {
+    fs.writeFileSync(filePath, updatedContent);
+    console.log(`Patched ${fileName} to use explicit .js extension.`);
   }
-
-  const updated = original.split(search).join(replacement);
-  fs.writeFileSync(filePath, updated);
-  console.log(`Patched ${fileName} to use explicit .js extension.`);
 });
