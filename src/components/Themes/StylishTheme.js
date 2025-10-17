@@ -3,7 +3,7 @@ import { ImgContext } from '../../utils/ImgContext';
 import UnsplashSearch from '../UnsplashSearch';
 
 const StylishTheme = ({ config }) => {
-    const { title, author, font, icon, customIcon, bgColor } = config;
+    const { title, author, font, fontSize, icon, customIcon, bgColor } = config;
     const { unsplashImage, setUnsplashImage } = useContext(ImgContext);
 
 
@@ -19,7 +19,7 @@ const StylishTheme = ({ config }) => {
 
                     <div className="h-full w-1/2 bg-white rounded-l-xl flex">
                         <div className={`${font} px-12 justify-center text-left rounded-xl h-full w-full p-6 md:p-10 flex flex-col gap-6`}>
-                            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 break-words">{title}</h1>
+                            <h1 className={`${fontSize} font-bold text-gray-800 break-words`}>{title}</h1>
                             <div className="flex items-center gap-4 text-left">
                                 {
                                     customIcon ?

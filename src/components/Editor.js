@@ -28,6 +28,7 @@ const defaultSettings = {
 	icon: defaultIcon,
 	devIconOptions: [defaultIcon],
 	font: 'font-Anek',
+	fontSize: 'text-5xl',
 	theme: 'background',
 	customIcon: '',
 	sizePreset: '16:9',
@@ -159,29 +160,45 @@ class Editor extends React.Component {
 									</div>
 								)}
 
-								<div className="grid grid-cols-2 gap-4">
-									<div className="flex flex-col">
-										<span className="font-medium text-sm pb-2">字体</span>
-										<select
-											value={this.state.font}
-											onChange={(e) => this.setState({ font: e.target.value })}
-											className="w-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 text-gray-700 text-base p-2.5 rounded">
-											<option>font-serif</option>
-											<option>font-sans</option>
-											<option>font-mono</option>
-											<option>font-Inter</option>
-											<option>font-Poppins</option>
-											<option>font-Anek</option>
-										</select>
-									</div>
-									<div className="flex flex-col">
-										<span className="font-medium text-sm pb-2">颜色</span>
-										<div className="h-[42px] border border-gray-300 rounded flex items-center p-1 focus-within:ring-2 focus-within:ring-blue-300">
-											<input type="color" value={this.state.bgColor}
-												onChange={(e) => this.setState({ bgColor: e.target.value })}
-												className="h-full w-full rounded cursor-pointer"
-											/>
-										</div>
+								<div className="flex flex-col">
+									<span className="font-medium text-sm pb-2">字体</span>
+									<select
+										value={this.state.font}
+										onChange={(e) => this.setState({ font: e.target.value })}
+										className="w-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 text-gray-700 text-base p-2.5 rounded">
+										<option>font-serif</option>
+										<option>font-sans</option>
+										<option>font-mono</option>
+										<option>font-Inter</option>
+										<option>font-Poppins</option>
+										<option>font-Anek</option>
+									</select>
+								</div>
+
+								<div className="flex flex-col">
+									<span className="font-medium text-sm pb-2">字体大小</span>
+									<select
+										value={this.state.fontSize}
+										onChange={(e) => this.setState({ fontSize: e.target.value })}
+										className="w-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 text-gray-700 text-base p-2.5 rounded">
+										<option value="text-2xl">小 (2XL)</option>
+										<option value="text-3xl">中等 (3XL)</option>
+										<option value="text-4xl">较大 (4XL)</option>
+										<option value="text-5xl">大 (5XL)</option>
+										<option value="text-6xl">特大 (6XL)</option>
+										<option value="text-7xl">超大 (7XL)</option>
+										<option value="text-8xl">极大 (8XL)</option>
+										<option value="text-9xl">最大 (9XL)</option>
+									</select>
+								</div>
+
+								<div className="flex flex-col">
+									<span className="font-medium text-sm pb-2">颜色</span>
+									<div className="h-[42px] border border-gray-300 rounded flex items-center p-1 focus-within:ring-2 focus-within:ring-blue-300">
+										<input type="color" value={this.state.bgColor}
+											onChange={(e) => this.setState({ bgColor: e.target.value })}
+											className="h-full w-full rounded cursor-pointer"
+										/>
 									</div>
 								</div>
 

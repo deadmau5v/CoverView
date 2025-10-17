@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const MobileMockupTheme = ({ config }) => {
-    const { bgColor, title, font } = config;
+    const { bgColor, title, font, fontSize } = config;
 
     const [image, setImage] = useState()
 
@@ -14,7 +14,7 @@ const MobileMockupTheme = ({ config }) => {
             >
 
 
-                <h1 className={`${font} text-2xl w-1/2 md:text-4xl px-4 text-white font-bold text-left`}>{title}</h1>
+                <h1 className={`${font} ${fontSize} w-1/2 px-4 text-white font-bold text-left`}>{title}</h1>
 
                 <div className="w-5/12 mx-auto m-4 mt-10 group h-full  shadow-lg  flex flex-col  bg-white border-t-8 border-x-8 border-gray-800 rounded-t-3xl border-white">
                     <div className="bg-gray-800 h-8 w-full p-2 pb-3 flex items-center rounded-t">

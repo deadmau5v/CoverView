@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const BasicTheme = ({ config }) => {
-    const { title, bgColor, pattern, author, icon, font, customIcon } = config;
+    const { title, bgColor, pattern, author, icon, font, fontSize, customIcon } = config;
 
     return (
         <div className=" bg-white w-full h-full ">
@@ -13,7 +13,7 @@ const BasicTheme = ({ config }) => {
                 <div className={`${font} bg-white md:w-10/12  m-auto flex flex-col pt-12 rounded-xl`}>
                     <div className="px-12">
                         <div>
-                            <h1 className="text-3xl md:text-5xl text-gray-800 font-bold text-center">{title}</h1>
+                            <h1 className={`${fontSize} text-gray-800 font-bold text-center`}>{title}</h1>
                         </div>
                     </div>
 
