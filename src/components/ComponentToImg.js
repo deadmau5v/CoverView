@@ -11,47 +11,90 @@ const ComponentToImg = (props) => {
 
 	const { unsplashImage } = useContext(ImgContext);
 	const componentRef = React.createRef();
+	const downloadFormat = (props.downloadAs || "WEBP").toUpperCase();
 
 
+	async function saveImage(data, filename) {
+		const anchor = document.createElement("a");
+		anchor.href = data;
+		anchor.download = filename;
+		document.body.appendChild(anchor);
+		anchor.click();
+		document.body.removeChild(anchor);
+	}
 
+	async function convertToWebp(data, quality = 0.8) {
+		try {
+			const image = await new Promise((resolve, reject) => {
+				const img = new Image();
+				img.onload = () => resolve(img);
+				img.onerror = reject;
+				img.src = data;
+			});
 
-	async function saveImage(data) {
-		var a = document.createElement("A");
-		a.href = data;
-		a.download = `cover.png`;
-		document.body.appendChild(a);
-		setLoading(false)
+			const canvas = document.createElement("canvas");
+			canvas.width = image.width;
+			canvas.height = image.height;
+			const context = canvas.getContext("2d");
 
-		a.click();
-		document.body.removeChild(a);
+			if (!context) {
+				return data;
+			}
+
+			context.drawImage(image, 0, 0);
+			const webpData = canvas.toDataURL("image/webp", quality);
+			if (webpData && webpData.startsWith("data:image/webp")) {
+				return webpData;
+			}
+
+			return data;
+		} catch (error) {
+			console.error("Unable to convert image to WebP", error);
+			return data;
+		}
 	}
 
 	const downloadImage = async () => {
 		// exportComponentAsPNG(componentRef, 'cover')
-		setLoading(true)
-
-		const element = componentRef.current;
-
-		// console.log(element)
-		// console.log(element.offsetHeight)
-
-		let data = await domtoimage.toPng(componentRef.current, {
-			height: element.offsetHeight * 2,
-			width: element.offsetWidth * 2,
-			style: {
-				transform: "scale(" + 2 + ")",
-				transformOrigin: "top left",
-				width: element.offsetWidth + "px",
-				height: element.offsetHeight + "px",
+		setLoading(true);
+		try {
+			const element = componentRef.current;
+			if (!element) {
+				throw new Error("Missing component reference for export");
 			}
-		})
 
-		// console.log(data)
-		await saveImage(data);
+			// console.log(element)
+			// console.log(element.offsetHeight)
 
+			const devicePixelRatio = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
+			const scale = devicePixelRatio > 1 ? 1.6 : 1;
+			const width = element.offsetWidth * scale;
+			const height = element.offsetHeight * scale;
 
-		if (unsplashImage) {
-			unsplash.photos.trackDownload({ downloadLocation: unsplashImage.downloadLink, });
+			const pngData = await domtoimage.toPng(element, {
+				height,
+				width,
+				style: {
+					transform: `scale(${scale})`,
+					transformOrigin: "top left",
+					width: `${element.offsetWidth}px`,
+					height: `${element.offsetHeight}px`,
+				}
+			});
+
+			const shouldExportWebp = downloadFormat === "WEBP";
+			const processedData = shouldExportWebp ? await convertToWebp(pngData) : pngData;
+			const isWebp = processedData.startsWith("data:image/webp");
+			const filename = isWebp ? "cover.webp" : "cover.png";
+			await saveImage(processedData, filename);
+
+			if (unsplashImage) {
+				unsplash.photos.trackDownload({ downloadLocation: unsplashImage.downloadLink, });
+			}
+		} catch (error) {
+			console.error("Failed to export cover image", error);
+		} finally {
+			setLoading(false);
 		}
 	}
 

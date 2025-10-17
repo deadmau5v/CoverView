@@ -23,7 +23,7 @@ const defaultSettings = {
 	title: "A beginners guide to frontend development",
 	bgColor: "#949ee5",
 	pattern: "",
-	download: "PNG",
+	download: "WEBP",
 	author: 'Rutik Wankhade',
 	icon: defaultIcon,
 	devIconOptions: [defaultIcon],
