@@ -1,3 +1,13 @@
+.cover-wrapper {
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid;
+}
+
+.cover-dimensions {
+    position: relative;
+}
+
 .dev {
     height: 340px;
     width: 860px;
@@ -6,5 +16,4 @@
 .hashnode {
     height: 420px;
     width: 800px;
-
 }

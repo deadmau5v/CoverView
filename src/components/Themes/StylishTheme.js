@@ -8,27 +8,27 @@ const StylishTheme = ({ config }) => {
 
 
     return (
-        <div className=" bg-white w-full h-full">
+        <div className="bg-white w-full h-full">
 
 
-            <div className={` overflow-y-hidden flex flex-col`}
+            <div className={`overflow-y-hidden flex flex-col w-full h-full`}
                 style={{ backgroundColor: bgColor }}
             >
 
-                <div className="flex flex-row  items-center bg-white  justify-center">
+                <div className="flex flex-row items-stretch bg-white justify-center w-full h-full">
 
-                    <div className="h-full w-1/2  bg-white rounded-l-xl">
-                        <div className={`${font} px-12 justify-center text-left rounded-xl h-full p-4 flex flex-col`}>
-                            <h1 className=" text-4xl font-bold text-gray-800">{title}</h1>
-                            <div className="flex items-center mt-10 text-left">
+                    <div className="h-full w-1/2 bg-white rounded-l-xl flex">
+                        <div className={`${font} px-12 justify-center text-left rounded-xl h-full w-full p-6 md:p-10 flex flex-col gap-6`}>
+                            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 break-words">{title}</h1>
+                            <div className="flex items-center gap-4 text-left">
                                 {
                                     customIcon ?
-                                        <div className=" ">
-                                            <img src={customIcon} alt="img" className="w-12 h-12 mr-2 rounded-full bg-white border border-white" />
+                                        <div className="">
+                                            <img src={customIcon} alt="img" className="w-12 h-12 rounded-full bg-white border border-white" />
                                         </div>
                                         :
-                                        <div className="mr-2 items-center justify-center flex">
-                                            <i className={`devicon-${icon.value}-plain  dev-icon text-3xl`}></i>
+                                        <div className="items-center justify-center flex">
+                                            <i className={`devicon-${icon.value}-plain dev-icon text-3xl`}></i>
                                         </div>
                                 }
                                 <h2 className="text-xl  font-semibold text-left ">{author}</h2>
@@ -41,9 +41,9 @@ const StylishTheme = ({ config }) => {
 
 
                         {unsplashImage ?
-                            <div className='relative w-full h-max flex group'>
+                            <div className='relative w-full h-full flex group'>
 
-                                <img src={unsplashImage.url && unsplashImage.url} className=" object-cover w-full h-full  " alt="preview" />
+                                <img src={unsplashImage.url && unsplashImage.url} className="object-cover w-full h-full" alt="preview" />
 
 
                                 <button
@@ -68,7 +68,7 @@ const StylishTheme = ({ config }) => {
                                 </div>
                             </div>
                             :
-                            <div className="flex h-max w-full flex-col bg-white items-center justify-center">
+                            <div className="flex h-full w-full flex-col bg-white items-center justify-center">
 
                                 <UnsplashSearch />
                             </div>

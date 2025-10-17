@@ -11,6 +11,14 @@ import { THEMES } from "../utils/constants";
 
 const defaultIcon = { 'label': 'react', 'value': 'react' }
 
+const SIZE_PRESETS = [
+	{ label: '16:9 (1280×720)', value: '16:9', width: '1280', height: '720' },
+	{ label: '4:3 (1024×768)', value: '4:3', width: '1024', height: '768' },
+	{ label: '16:10 (1280×800)', value: '16:10', width: '1280', height: '800' },
+	{ label: '1:1 (800×800)', value: '1:1', width: '800', height: '800' },
+	{ label: '3:2 (1200×800)', value: '3:2', width: '1200', height: '800' },
+];
+
 const defaultSettings = {
 	title: "A beginners guide to frontend development",
 	bgColor: "#949ee5",
@@ -22,7 +30,9 @@ const defaultSettings = {
 	font: 'font-Anek',
 	theme: 'background',
 	customIcon: '',
-	platform: 'hashnode'
+	sizePreset: '16:9',
+	width: '1280',
+	height: '720'
 };
 
 const devIconsUrl = "https://raw.githubusercontent.com/devicons/devicon/master/devicon.json"
@@ -50,6 +60,27 @@ class Editor extends React.Component {
 		});
 	};
 
+	handleSizePresetChange = (event) => {
+		const value = event.target.value;
+		if (value === 'custom') {
+			this.setState({ sizePreset: value });
+			return;
+		}
+
+		const selectedPreset = SIZE_PRESETS.find(item => item.value === value);
+		if (selectedPreset) {
+			this.setState({
+				sizePreset: selectedPreset.value,
+				width: selectedPreset.width,
+				height: selectedPreset.height,
+			});
+		}
+	};
+
+	handleDimensionChange = (field, value) => {
+		this.setState({ [field]: value });
+	};
+
 	getRandomTheme = (theme, Pattern) => {
 		this.setState({ bgColor: theme.bgColor, borderColor: theme.bdColor, pattern: Pattern });
 	}
@@ -67,11 +98,11 @@ class Editor extends React.Component {
 
 	render() {
 		return (
-			<div className="max-w-[1400px]  mx-auto">
+			<div className="mx-auto px-10">
 				<Header />
 
 				<ImgProvider>
-					<div className="flex md:flex-row flex-col  ">
+					<div className="flex md:flex-row flex-col h-screen">
 
 						<div className="bg-white flex flex-col h-100 md:w-3/12">
 
@@ -192,16 +223,46 @@ class Editor extends React.Component {
 												</div> */}
 
 												<div className="flex flex-col m-2 w-full">
-													<span className="font-medium text-sm pb-1">平台</span>
+													<span className="font-medium text-sm pb-1">尺寸</span>
 
 													<select
-														onChange={(e) => this.setState({ platform: e.target.value })}
-														value={this.state.platform}
+														onChange={this.handleSizePresetChange}
+														value={this.state.sizePreset}
 														className="focus:outline-none text-gray-700 text-lg p-2 rounded border">
-														<option>hashnode</option>
-														<option>dev</option>
+														{
+															SIZE_PRESETS.map(preset => (
+																<option key={preset.value} value={preset.value}>{preset.label}</option>
+															))
+														}
+														<option value="custom">自定义</option>
 													</select>
+													<span className="text-xs text-gray-500 mt-1">当前尺寸：{this.state.width || '—'} × {this.state.height || '—'} px</span>
 												</div>
+
+												{this.state.sizePreset === 'custom' && (
+													<div className="flex flex-col md:flex-row m-2 gap-2">
+														<div className="flex flex-col w-full md:w-1/2">
+															<span className="font-medium text-sm pb-1">宽度 (px)</span>
+															<input
+																type="number"
+																min="1"
+																value={this.state.width}
+																onChange={(e) => this.handleDimensionChange('width', e.target.value)}
+																className="focus:outline-none border text-gray-700 text-lg rounded bg-white p-2"
+															/>
+														</div>
+														<div className="flex flex-col w-full md:w-1/2">
+															<span className="font-medium text-sm pb-1">高度 (px)</span>
+															<input
+																type="number"
+																min="1"
+																value={this.state.height}
+																onChange={(e) => this.handleDimensionChange('height', e.target.value)}
+																className="focus:outline-none border text-gray-700 text-lg rounded bg-white p-2"
+															/>
+														</div>
+													</div>
+												)}
 
 											</div>
 
@@ -236,7 +297,7 @@ class Editor extends React.Component {
 
 						{/* cover image preview */}
 
-						<div className=" flex m-2 flex-col items-center justify-center ">
+						<div className="flex-1 min-w-0 m-2 flex flex-col items-center justify-center ">
 
 							<ComponentToImg downloadAs={this.state.download}>
 								<CoverImage {...this.state} />

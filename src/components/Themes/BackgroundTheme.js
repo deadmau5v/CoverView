@@ -8,26 +8,26 @@ const BackgroundTheme = ({ config }) => {
 
 
     return (
-        <div className=" bg-white ">
+        <div className="bg-white w-full h-full">
 
 
-            <div className={` overflow-y-hidden flex flex-col`}
+            <div className={`overflow-y-hidden flex flex-col w-full h-full`}
                 style={{ backgroundColor: bgColor }}
             >
 
-                <div className="flex flex-row  items-center bg-white  justify-center ">
+                <div className="flex flex-row items-center bg-white justify-center w-full h-full">
 
-                    <div className="w-full">
+                    <div className="w-full h-full">
 
                         {unsplashImage ?
-                            <div className='relative flex group'>
+                            <div className='relative flex group w-full h-full'>
 
-                                <div className="h-max w-full ">
-                                    <img src={unsplashImage.url && unsplashImage.url} className=" object-cover h-full w-full  " alt="preview" />
+                                <div className="h-full w-full">
+                                    <img src={unsplashImage.url && unsplashImage.url} className="object-cover h-full w-full" alt="preview" />
                                 </div>
 
 
-                                <div className="h-full bg-gray-800/60 absolute top-0 right-0 left-0 ">
+                                <div className="absolute inset-0 bg-gray-800/60">
                                     <button
                                         onClick={() => setUnsplashImage('')}
                                         className="absolute  top-2 right-2 cursor-pointer">
@@ -35,11 +35,11 @@ const BackgroundTheme = ({ config }) => {
 
                                     </button>
 
-                                    <div className={`${font} px-10 pt-32  text-left rounded-xl h-full p-4 flex flex-col`}>
-                                        <h1 className=" md:text-5xl text-center text-2xl font-bold text-white">{title}</h1>
-                                        <div className="flex flex-col items-center py-10  ">
+                                    <div className={`${font} px-10 py-16 text-center h-full w-full flex flex-col items-center justify-center gap-8`}>
+                                        <h1 className="md:text-5xl text-3xl font-bold text-white break-words max-w-3xl">{title}</h1>
+                                        <div className="flex flex-col items-center gap-4">
 
-                                            <h2 className="text-xl  font-semibold text-left text-white ">{author}</h2>
+                                            <h2 className="text-xl font-semibold text-white">{author}</h2>
                                             {
                                                 customIcon ?
                                                     <div className=" ">
@@ -70,7 +70,7 @@ const BackgroundTheme = ({ config }) => {
                                 </div>
                             </div>
                             :
-                            <div className="flex flex-col p-2  bg-white items-center justify-center">
+                            <div className="flex flex-col p-4 bg-white items-center justify-center h-full w-full">
 
                                 <UnsplashSearch largeImgPreview />
 
