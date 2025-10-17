@@ -34,8 +34,13 @@ class Editor extends React.Component {
 	componentDidMount() {
 		// console.log("Mount")
 		fetch(devIconsUrl).then(r => r.json()).then(data => {
-			data.unshift({ name: 'upload your own' })
-			this.setState({ devIconOptions: data.map(item => ({ 'value': item.name, 'label': item.name })) })
+			data.unshift({ name: 'custom-upload', displayName: '上传自定义图标' })
+			this.setState({
+				devIconOptions: data.map(item => ({
+					'value': item.name,
+					'label': item.displayName || item.name
+				}))
+			})
 		})
 	}
 	handleReset = () => {
@@ -79,29 +84,29 @@ class Editor extends React.Component {
 										<div>
 
 											<div className="m-2 flex flex-col">
-												<span className="font-medium text-sm pb-1">Blog Title</span>
+												<span className="font-medium text-sm pb-1">文章标题</span>
 												<textarea
 													type="text"
 													value={this.state.title}
-													placeholder="Enter title here"
+													placeholder="在此输入标题"
 													className="focus:outline-none border text-gray-700 text-lg  rounded p-2 h-24"
 													onChange={(e) => this.setState({ title: e.target.value })}
 												/>
 											</div>
 
 											<div className="flex flex-col m-2 ">
-												<span className="font-medium text-sm pb-1">Author</span>
+												<span className="font-medium text-sm pb-1">作者</span>
 												<input
 													type="text"
 													value={this.state.author}
-													placeholder="Author"
+													placeholder="输入作者名称"
 													className="focus:outline-none border text-gray-700 text-lg rounded bg-white p-2"
 													onChange={(e) => this.setState({ author: e.target.value })}
 												></input>
 											</div>
 
 											<div className="flex flex-col m-2 ">
-												<span className="font-medium text-sm pb-1">Icon</span>
+												<span className="font-medium text-sm pb-1">图标</span>
 												<Select value={this.state.icon}
 													onChange={(selectedOption) => this.setState({ icon: selectedOption })}
 													options={this.state.devIconOptions}
@@ -110,10 +115,10 @@ class Editor extends React.Component {
 												/>
 											</div>
 											<div className="w-full">
-
-												{this.state.icon.label === 'upload your own' ?
+												{this.state.icon.value === 'custom-upload' ?
 													<div className="flex items-center justify-center w-64 mx-auto">
-														<input type="file"
+														<input
+															type="file"
 															className="focus:outline-none w-full text-sm cursor-pointer bg-white rounded border"
 															onChange={(e) => this.setState({ 'customIcon': URL.createObjectURL(e.target.files[0]) })}
 														/>
@@ -127,7 +132,7 @@ class Editor extends React.Component {
 											<div className="flex items-center">
 
 												<div className="flex flex-col m-2 w-1/2">
-													<span className="font-medium text-sm pb-1">Font</span>
+													<span className="font-medium text-sm pb-1">字体</span>
 
 													<select
 														value={this.state.font}
@@ -142,7 +147,7 @@ class Editor extends React.Component {
 													</select>
 												</div>
 												<div className="flex flex-col m-2 w-1/2">
-													<span className="font-medium text-sm pb-1">Color</span>
+													<span className="font-medium text-sm pb-1">颜色</span>
 													<div className="border rounded flex items-center p-1">
 
 														{/* <span className="text-base text-gray-700  mx-2">{this.state.bgColor}</span> */}
@@ -187,7 +192,7 @@ class Editor extends React.Component {
 												</div> */}
 
 												<div className="flex flex-col m-2 w-full">
-													<span className="font-medium text-sm pb-1">Platform</span>
+													<span className="font-medium text-sm pb-1">平台</span>
 
 													<select
 														onChange={(e) => this.setState({ platform: e.target.value })}
@@ -204,7 +209,7 @@ class Editor extends React.Component {
 												className="flex items-center bg-gray-700 hover:bg-gray-800 text-white rounded-lg mt-6 text-base  p-1 px-4 mx-auto border"
 												onClick={this.handleReset}>
 												<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-white mr-2 " fill="currentColor" viewBox="0 0 24 24" ><path d="M12 16c1.671 0 3-1.331 3-3s-1.329-3-3-3-3 1.331-3 3 1.329 3 3 3z"></path><path d="M20.817 11.186a8.94 8.94 0 0 0-1.355-3.219 9.053 9.053 0 0 0-2.43-2.43 8.95 8.95 0 0 0-3.219-1.355 9.028 9.028 0 0 0-1.838-.18V2L8 5l3.975 3V6.002c.484-.002.968.044 1.435.14a6.961 6.961 0 0 1 2.502 1.053 7.005 7.005 0 0 1 1.892 1.892A6.967 6.967 0 0 1 19 13a7.032 7.032 0 0 1-.55 2.725 7.11 7.11 0 0 1-.644 1.188 7.2 7.2 0 0 1-.858 1.039 7.028 7.028 0 0 1-3.536 1.907 7.13 7.13 0 0 1-2.822 0 6.961 6.961 0 0 1-2.503-1.054 7.002 7.002 0 0 1-1.89-1.89A6.996 6.996 0 0 1 5 13H3a9.02 9.02 0 0 0 1.539 5.034 9.096 9.096 0 0 0 2.428 2.428A8.95 8.95 0 0 0 12 22a9.09 9.09 0 0 0 1.814-.183 9.014 9.014 0 0 0 3.218-1.355 8.886 8.886 0 0 0 1.331-1.099 9.228 9.228 0 0 0 1.1-1.332A8.952 8.952 0 0 0 21 13a9.09 9.09 0 0 0-.183-1.814z"></path></svg>
-												<span className="font-Inter">Reset All</span>
+												<span className="font-Inter">全部重置</span>
 											</button>
 
 										</div>
@@ -244,7 +249,7 @@ class Editor extends React.Component {
 							<div className="h-99 w-full flex flex-col justify-center">
 
 								<div className="flex items-center">
-									<h2 className="text-lg pl-2 font-inter font-semibold">Themes</h2>
+									<h2 className="text-lg pl-2 font-inter font-semibold">主题</h2>
 									<div className="ml-auto mr-1 p-2">
 										<RandomTheme onThemeChange={this.getRandomTheme} />
 

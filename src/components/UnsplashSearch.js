@@ -69,7 +69,7 @@ const UnsplashSearch = ({ largeImgPreview }) => {
                     <form onSubmit={(e) => handleSearchSubmit(e)} className=" mx-auto w-full flex bg-gray-50 rounded-full border border-gray-50 mb-2">
                         <input type="text"
                             value={searchText}
-                            placeholder="Search photos"
+                            placeholder="搜索照片"
                             className="focus:outline-none w-full text-lg bg-gray-50  p-1 px-4  rounded-full  "
                             onChange={(e) => setSearchText(e.target.value)}
                         />
@@ -89,7 +89,7 @@ const UnsplashSearch = ({ largeImgPreview }) => {
                                 className={`rounded-lg relative cursor-pointer m-1 ${largeImgPreview ? ' h-44 w-60' : 'h-24 w-40'
                                     }`}
                             >
-                                <span className="font-Inter top-2 left-2 absolute text-sm font-semibold text-white opacity-50 ">Click to Select</span>
+                                <span className="font-Inter top-2 left-2 absolute text-sm font-semibold text-white opacity-50 ">点击选择</span>
                                 <img src={image.urls.regular}
                                     alt={image.alt_description}
                                     onClick={() => selectImage(image)
