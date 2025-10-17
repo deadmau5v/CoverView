@@ -106,126 +106,125 @@ class Editor extends React.Component {
 
 						<div className="bg-white flex flex-col md:w-3/12 md:min-w-[300px] md:max-w-[400px] overflow-y-auto flex-shrink-0 h-full border-dashed border-r-2 border-gray-100">
 							<div className="w-full p-4 space-y-4">
+								<div className="flex flex-col">
+									<span className="font-medium text-sm pb-2">文章标题</span>
+									<textarea
+										type="text"
+										value={this.state.title}
+										placeholder="在此输入标题"
+										className="w-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 text-gray-700 text-base rounded p-2.5 h-24 resize-none"
+										onChange={(e) => this.setState({ title: e.target.value })}
+									/>
+								</div>
 
-											<div className="flex flex-col">
-												<span className="font-medium text-sm pb-2">文章标题</span>
-												<textarea
-													type="text"
-													value={this.state.title}
-													placeholder="在此输入标题"
-													className="w-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 text-gray-700 text-base rounded p-2.5 h-24 resize-none"
-													onChange={(e) => this.setState({ title: e.target.value })}
-												/>
-											</div>
+								<div className="flex flex-col">
+									<span className="font-medium text-sm pb-2">作者</span>
+									<input
+										type="text"
+										value={this.state.author}
+										placeholder="输入作者名称"
+										className="w-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 text-gray-700 text-base rounded p-2.5"
+										onChange={(e) => this.setState({ author: e.target.value })}
+									/>
+								</div>
 
-											<div className="flex flex-col">
-												<span className="font-medium text-sm pb-2">作者</span>
-												<input
-													type="text"
-													value={this.state.author}
-													placeholder="输入作者名称"
-													className="w-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 text-gray-700 text-base rounded p-2.5"
-													onChange={(e) => this.setState({ author: e.target.value })}
-												/>
-											</div>
+								<div className="flex flex-col">
+									<span className="font-medium text-sm pb-2">图标</span>
+									<Select value={this.state.icon}
+										onChange={(selectedOption) => this.setState({ icon: selectedOption })}
+										options={this.state.devIconOptions}
+										formatOptionLabel={this.formatOptionLabel}
+										className="outline-none focus:outline-none items-center text-base text-gray-700"
+									/>
+								</div>
+								
+								{this.state.icon.value === 'custom-upload' && (
+									<div className="flex flex-col items-center justify-center">
+										<label className="w-full flex flex-col items-center px-4 py-6 bg-white rounded-lg border-2 border-dashed border-gray-300 hover:border-blue-400 cursor-pointer transition-colors duration-300">
+											<svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+											</svg>
+											<span className="mt-2 text-sm text-gray-500">点击选择文件</span>
+											<span className="text-xs text-gray-400 mt-1">支持 PNG, JPG, SVG</span>
+											<input
+												type="file"
+												className="hidden"
+												accept="image/*"
+												onChange={(e) => this.setState({ 'customIcon': URL.createObjectURL(e.target.files[0]) })}
+											/>
+										</label>
+										{this.state.customIcon && (
+											<div className="mt-2 text-xs text-green-600">✓ 图标已上传</div>
+										)}
+									</div>
+								)}
 
-											<div className="flex flex-col">
-												<span className="font-medium text-sm pb-2">图标</span>
-												<Select value={this.state.icon}
-													onChange={(selectedOption) => this.setState({ icon: selectedOption })}
-													options={this.state.devIconOptions}
-													formatOptionLabel={this.formatOptionLabel}
-													className="outline-none focus:outline-none items-center text-base text-gray-700"
-												/>
-											</div>
-											{this.state.icon.value === 'custom-upload' && (
-												<div className="flex flex-col items-center justify-center">
-													<label className="w-full flex flex-col items-center px-4 py-6 bg-white rounded-lg border-2 border-dashed border-gray-300 hover:border-blue-400 cursor-pointer transition-colors duration-300">
-														<svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-														</svg>
-														<span className="mt-2 text-sm text-gray-500">点击选择文件</span>
-														<span className="text-xs text-gray-400 mt-1">支持 PNG, JPG, SVG</span>
-														<input
-															type="file"
-															className="hidden"
-															accept="image/*"
-															onChange={(e) => this.setState({ 'customIcon': URL.createObjectURL(e.target.files[0]) })}
-														/>
-													</label>
-													{this.state.customIcon && (
-														<div className="mt-2 text-xs text-green-600">✓ 图标已上传</div>
-													)}
-												</div>
-											)}
+								<div className="grid grid-cols-2 gap-4">
+									<div className="flex flex-col">
+										<span className="font-medium text-sm pb-2">字体</span>
+										<select
+											value={this.state.font}
+											onChange={(e) => this.setState({ font: e.target.value })}
+											className="w-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 text-gray-700 text-base p-2.5 rounded">
+											<option>font-serif</option>
+											<option>font-sans</option>
+											<option>font-mono</option>
+											<option>font-Inter</option>
+											<option>font-Poppins</option>
+											<option>font-Anek</option>
+										</select>
+									</div>
+									<div className="flex flex-col">
+										<span className="font-medium text-sm pb-2">颜色</span>
+										<div className="h-[42px] border border-gray-300 rounded flex items-center p-1 focus-within:ring-2 focus-within:ring-blue-300">
+											<input type="color" value={this.state.bgColor}
+												onChange={(e) => this.setState({ bgColor: e.target.value })}
+												className="h-full w-full rounded cursor-pointer"
+											/>
+										</div>
+									</div>
+								</div>
 
-											<div className="grid grid-cols-2 gap-4">
-												<div className="flex flex-col">
-													<span className="font-medium text-sm pb-2">字体</span>
-													<select
-														value={this.state.font}
-														onChange={(e) => this.setState({ font: e.target.value })}
-														className="w-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 text-gray-700 text-base p-2.5 rounded">
-														<option>font-serif</option>
-														<option>font-sans</option>
-														<option>font-mono</option>
-														<option>font-Inter</option>
-														<option>font-Poppins</option>
-														<option>font-Anek</option>
-													</select>
-												</div>
-												<div className="flex flex-col">
-													<span className="font-medium text-sm pb-2">颜色</span>
-													<div className="h-[42px] border border-gray-300 rounded flex items-center p-1 focus-within:ring-2 focus-within:ring-blue-300">
-														<input type="color" value={this.state.bgColor}
-															onChange={(e) => this.setState({ bgColor: e.target.value })}
-															className="h-full w-full rounded cursor-pointer"
-														/>
-													</div>
-												</div>
-											</div>
+								<div className="flex flex-col">
+									<span className="font-medium text-sm pb-2">尺寸</span>
+									<select
+										onChange={this.handleSizePresetChange}
+										value={this.state.sizePreset}
+										className="w-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 text-gray-700 text-base p-2.5 rounded">
+										{
+											SIZE_PRESETS.map(preset => (
+												<option key={preset.value} value={preset.value}>{preset.label}</option>
+											))
+										}
+										<option value="custom">自定义</option>
+									</select>
+									<span className="text-xs text-gray-500 mt-1.5">当前尺寸：{this.state.width || '—'} × {this.state.height || '—'} px</span>
+								</div>
 
-
-											<div className="flex flex-col">
-												<span className="font-medium text-sm pb-2">尺寸</span>
-												<select
-													onChange={this.handleSizePresetChange}
-													value={this.state.sizePreset}
-													className="w-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 text-gray-700 text-base p-2.5 rounded">
-													{
-														SIZE_PRESETS.map(preset => (
-															<option key={preset.value} value={preset.value}>{preset.label}</option>
-														))
-													}
-													<option value="custom">自定义</option>
-												</select>
-												<span className="text-xs text-gray-500 mt-1.5">当前尺寸：{this.state.width || '—'} × {this.state.height || '—'} px</span>
-											</div>
-
-											{this.state.sizePreset === 'custom' && (
-												<div className="grid grid-cols-2 gap-4">
-													<div className="flex flex-col">
-														<span className="font-medium text-sm pb-2">宽度 (px)</span>
-														<input
-															type="number"
-															min="1"
-															value={this.state.width}
-															onChange={(e) => this.handleDimensionChange('width', e.target.value)}
-															className="w-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 text-gray-700 text-base rounded p-2.5"
-														/>
-													</div>
-													<div className="flex flex-col">
-														<span className="font-medium text-sm pb-2">高度 (px)</span>
-														<input
-															type="number"
-															min="1"
-															value={this.state.height}
-															onChange={(e) => this.handleDimensionChange('height', e.target.value)}
-															className="w-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 text-gray-700 text-base rounded p-2.5"
-														/>
-													</div>
-												</div>
-											)}
+								{this.state.sizePreset === 'custom' && (
+									<div className="grid grid-cols-2 gap-4">
+										<div className="flex flex-col">
+											<span className="font-medium text-sm pb-2">宽度 (px)</span>
+											<input
+												type="number"
+												min="1"
+												value={this.state.width}
+												onChange={(e) => this.handleDimensionChange('width', e.target.value)}
+												className="w-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 text-gray-700 text-base rounded p-2.5"
+											/>
+										</div>
+										<div className="flex flex-col">
+											<span className="font-medium text-sm pb-2">高度 (px)</span>
+											<input
+												type="number"
+												min="1"
+												value={this.state.height}
+												onChange={(e) => this.handleDimensionChange('height', e.target.value)}
+												className="w-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 text-gray-700 text-base rounded p-2.5"
+											/>
+										</div>
+									</div>
+								)}
 
 								<button
 									className="w-full flex items-center justify-center bg-gray-700 hover:bg-gray-800 text-white rounded-lg mt-2 text-base py-2.5 px-4 transition-colors duration-200"
