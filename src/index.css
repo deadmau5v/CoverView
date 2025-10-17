@@ -22,22 +22,55 @@
     height:35rem;
 }
 
+/* Scrollbar styling */
 ::-webkit-scrollbar {
-  /* width: 8px; */
-  display: none;
+  width: 6px;
+  height: 6px;
 }
 
-Track
+/* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
+  border-radius: 3px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background:  #ccccff;
+  background: #ccccff;
+  border-radius: 3px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background:  #b3b3ff;
+  background: #b3b3ff;
+}
+
+/* Hide scrollbar for main content areas but keep functionality */
+.overflow-y-auto:not(.show-scrollbar),
+.overflow-x-auto:not(.show-scrollbar) {
+  scrollbar-width: thin;
+  scrollbar-color: #ccccff #f1f1f1;
+}
+
+/* Prevent layout overflow */
+* {
+  box-sizing: border-box;
+}
+
+/* Ensure proper flex layout behavior */
+.flex-shrink-0 {
+  flex-shrink: 0 !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .h-100 {
+    height: auto;
+    min-height: 20rem;
+  }
+  
+  .h-99 {
+    height: auto;
+    min-height: 20rem;
+  }
 }
