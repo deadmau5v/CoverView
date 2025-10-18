@@ -3,11 +3,12 @@ import CoverImage from "./CoverImage";
 import ComponentToImg from "./ComponentToImg";
 import Select from 'react-select';
 import RandomTheme from './RandomTheme';
-import { ImgProvider } from '../utils/ImgContext'
+import { ImgProvider, ImgContext } from '../utils/ImgContext'
 import Header from "./Header";
 
 
 import { THEMES } from "../utils/constants";
+import { getThemeOptions } from "../utils/colorThemes";
 
 const defaultIcon = { 'label': 'react', 'value': 'react' }
 
@@ -21,7 +22,6 @@ const SIZE_PRESETS = [
 
 const defaultSettings = {
 	title: "A beginners guide to frontend development",
-	bgColor: "#949ee5",
 	pattern: "",
 	download: "WEBP",
 	author: 'Rutik Wankhade',
@@ -38,8 +38,34 @@ const defaultSettings = {
 
 const devIconsUrl = "https://raw.githubusercontent.com/devicons/devicon/master/devicon.json"
 
-class Editor extends React.Component {
+// 主题选择器组件（需要访问 Context）
+const ThemeSelector = () => {
+	const { colorTheme, setColorTheme } = React.useContext(ImgContext);
+	
+	return (
+		<div className="flex flex-col">
+			<span className="font-medium text-sm pb-2">配色主题</span>
+			<Select 
+				value={getThemeOptions().find(opt => opt.value === colorTheme)}
+				onChange={(selectedOption) => setColorTheme(selectedOption.value)}
+				options={getThemeOptions()}
+				formatOptionLabel={({ label, theme }) => (
+					<div className="flex items-center">
+						<span className="mr-auto">{label}</span>
+						<div className="flex gap-1 ml-2">
+							<div className="w-4 h-4 rounded-full border border-gray-300" style={{ backgroundColor: theme.background }}></div>
+							<div className="w-4 h-4 rounded-full border border-gray-300" style={{ backgroundColor: theme.primary }}></div>
+							<div className="w-4 h-4 rounded-full border border-gray-300" style={{ backgroundColor: theme.accent }}></div>
+						</div>
+					</div>
+				)}
+				className="outline-none focus:outline-none items-center text-base text-gray-700"
+			/>
+		</div>
+	);
+};
 
+class Editor extends React.Component {
 
 	state = defaultSettings;
 	componentDidMount() {
@@ -83,7 +109,18 @@ class Editor extends React.Component {
 	};
 
 	getRandomTheme = (theme, Pattern) => {
-		this.setState({ bgColor: theme.bgColor, borderColor: theme.bdColor, pattern: Pattern });
+		this.setState({ borderColor: theme.bdColor, pattern: Pattern });
+	}
+
+	getFontOptions = () => {
+		return [
+			{ value: 'font-serif', label: 'Serif - 衬线体' },
+			{ value: 'font-sans', label: 'Sans - 无衬线体' },
+			{ value: 'font-mono', label: 'Mono - 等宽字体' },
+			{ value: 'font-Inter', label: 'Inter' },
+			{ value: 'font-Poppins', label: 'Poppins' },
+			{ value: 'font-Anek', label: 'Anek' },
+		];
 	}
 
 	formatOptionLabel = ({ value, label }) => (
@@ -92,6 +129,12 @@ class Editor extends React.Component {
 			<div className="ml-auto mr-2">
 				<i className={`devicon-${value}-plain dev-icon text-2xl`}></i>
 			</div>
+		</div>
+	);
+
+	formatFontOptionLabel = ({ value, label }) => (
+		<div className={`flex items-center ${value}`}>
+			<span className="text-base">{label}</span>
 		</div>
 	);
 
@@ -162,17 +205,13 @@ class Editor extends React.Component {
 
 								<div className="flex flex-col">
 									<span className="font-medium text-sm pb-2">字体</span>
-									<select
-										value={this.state.font}
-										onChange={(e) => this.setState({ font: e.target.value })}
-										className="w-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 text-gray-700 text-base p-2.5 rounded">
-										<option>font-serif</option>
-										<option>font-sans</option>
-										<option>font-mono</option>
-										<option>font-Inter</option>
-										<option>font-Poppins</option>
-										<option>font-Anek</option>
-									</select>
+									<Select
+										value={this.getFontOptions().find(opt => opt.value === this.state.font)}
+										onChange={(selectedOption) => this.setState({ font: selectedOption.value })}
+										options={this.getFontOptions()}
+										formatOptionLabel={this.formatFontOptionLabel}
+										className="outline-none focus:outline-none items-center text-base text-gray-700"
+									/>
 								</div>
 
 								<div className="flex flex-col">
@@ -192,15 +231,7 @@ class Editor extends React.Component {
 									</select>
 								</div>
 
-								<div className="flex flex-col">
-									<span className="font-medium text-sm pb-2">颜色</span>
-									<div className="h-[42px] border border-gray-300 rounded flex items-center p-1 focus-within:ring-2 focus-within:ring-blue-300">
-										<input type="color" value={this.state.bgColor}
-											onChange={(e) => this.setState({ bgColor: e.target.value })}
-											className="h-full w-full rounded cursor-pointer"
-										/>
-									</div>
-								</div>
+								<ThemeSelector />
 
 								<div className="flex flex-col">
 									<span className="font-medium text-sm pb-2">尺寸</span>

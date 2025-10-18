@@ -3,8 +3,8 @@ import { ImgContext } from '../../utils/ImgContext';
 import UnsplashSearch from '../UnsplashSearch';
 
 const StylishTheme = ({ config }) => {
-    const { title, author, font, fontSize, icon, customIcon, bgColor } = config;
-    const { unsplashImage, setUnsplashImage } = useContext(ImgContext);
+    const { title, author, font, fontSize, icon, customIcon } = config;
+    const { unsplashImage, setUnsplashImage, themeColors } = useContext(ImgContext);
 
 
     return (
@@ -12,26 +12,35 @@ const StylishTheme = ({ config }) => {
 
 
             <div className={`overflow-y-hidden flex flex-col w-full h-full`}
-                style={{ backgroundColor: bgColor }}
+                style={{ backgroundColor: themeColors.background }}
             >
 
-                <div className="flex flex-row items-stretch bg-white justify-center w-full h-full">
+                <div className="flex flex-row items-stretch justify-center w-full h-full">
 
-                    <div className="h-full w-1/2 bg-white rounded-l-xl flex">
+                    <div className="h-full w-1/2 rounded-l-xl flex"
+                        style={{ backgroundColor: themeColors.card }}
+                    >
                         <div className={`${font} px-12 justify-center text-left rounded-xl h-full w-full p-6 md:p-10 flex flex-col gap-6`}>
-                            <h1 className={`${fontSize} font-bold text-gray-800 break-words`}>{title}</h1>
+                            <h1 className={`${fontSize} font-bold break-words`}
+                                style={{ color: themeColors.foreground }}
+                            >{title}</h1>
                             <div className="flex items-center gap-4 text-left">
                                 {
                                     customIcon ?
                                         <div className="">
-                                            <img src={customIcon} alt="img" className="w-12 h-12 rounded-full bg-white border border-white" />
+                                            <img src={customIcon} alt="img" className="w-12 h-12 rounded-full border" 
+                                                style={{ backgroundColor: themeColors.card, borderColor: themeColors.border }} />
                                         </div>
                                         :
                                         <div className="items-center justify-center flex">
-                                            <i className={`devicon-${icon.value}-plain dev-icon text-3xl`}></i>
+                                            <i className={`devicon-${icon.value}-plain dev-icon text-3xl`}
+                                                style={{ color: themeColors.primary }}
+                                            ></i>
                                         </div>
                                 }
-                                <h2 className="text-xl  font-semibold text-left ">{author}</h2>
+                                <h2 className="text-xl font-semibold text-left"
+                                    style={{ color: themeColors.muted }}
+                                >{author}</h2>
 
 
                             </div>
@@ -68,7 +77,9 @@ const StylishTheme = ({ config }) => {
                                 </div>
                             </div>
                             :
-                            <div className="flex h-full w-full flex-col bg-white items-center justify-center">
+                            <div className="flex h-full w-full flex-col items-center justify-center"
+                                style={{ backgroundColor: themeColors.card }}
+                            >
 
                                 <UnsplashSearch />
                             </div>
