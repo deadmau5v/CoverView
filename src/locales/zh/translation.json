@@ -1,0 +1,134 @@
+{
+  "common": {
+    "title": "标题",
+    "author": "作者",
+    "download": "下载",
+    "preview": "预览",
+    "settings": "设置"
+  },
+  "header": {
+    "tagline": "为你的博客创建精美的封面图片",
+    "getStarted": "开始使用",
+    "faq": "常见问题",
+    "home": "首页"
+  },
+  "editor": {
+    "titlePlaceholder": "前端开发入门指南",
+    "authorPlaceholder": "你的名字",
+    "selectIcon": "选择图标",
+    "customUpload": "上传自定义图标",
+    "theme": "主题",
+    "colorTheme": "配色主题",
+    "pattern": "图案",
+    "font": "字体",
+    "fontSize": "字体大小",
+    "canvasSize": "画布尺寸",
+    "customSize": "自定义尺寸",
+    "width": "宽度",
+    "height": "高度",
+    "downloadFormat": "下载格式",
+    "searchBackground": "搜索背景图片",
+    "randomTheme": "随机主题"
+  },
+  "themes": {
+    "background": "背景",
+    "stylish": "时尚",
+    "basic": "基础",
+    "modern": "现代",
+    "outline": "轮廓",
+    "preview": "预览",
+    "mobile": "移动模型"
+  },
+  "colorThemes": {
+    "oneDark": "One Dark",
+    "catppuccinLatte": "Catppuccin Latte",
+    "catppuccinFrappe": "Catppuccin Frappé",
+    "catppuccinMacchiato": "Catppuccin Macchiato",
+    "catppuccinMocha": "Catppuccin Mocha",
+    "nord": "Nord",
+    "tokyoNight": "Tokyo Night",
+    "gruvbox": "Gruvbox",
+    "solarized": "Solarized",
+    "dracula": "Dracula"
+  },
+  "fonts": {
+    "inter": "Inter",
+    "poppins": "Poppins",
+    "anek": "Anek Latin",
+    "nunito": "Nunito"
+  },
+  "sizes": {
+    "16:9": "16:9 (1280×720)",
+    "4:3": "4:3 (1024×768)",
+    "16:10": "16:10 (1280×800)",
+    "1:1": "1:1 (800×800)",
+    "3:2": "3:2 (1200×800)",
+    "custom": "自定义"
+  },
+  "patterns": {
+    "none": "无",
+    "dots": "圆点",
+    "zigzag": "锯齿",
+    "cross": "十字",
+    "diagonal": "对角线"
+  },
+  "home": {
+    "hero": {
+      "title": "创建精美博客封面",
+      "subtitle": "几秒钟内为你的博客文章设计出色的封面图片",
+      "cta": "开始创建"
+    },
+    "features": {
+      "title": "特性",
+      "fast": {
+        "title": "超快速度",
+        "description": "几秒钟内创建专业封面"
+      },
+      "themes": {
+        "title": "多种主题",
+        "description": "从 7 个精美主题中选择"
+      },
+      "customization": {
+        "title": "高度可定制",
+        "description": "9 个配色主题，多种字体和尺寸"
+      },
+      "icons": {
+        "title": "开发图标",
+        "description": "100+ 图标或上传自己的"
+      }
+    },
+    "howItWorks": {
+      "title": "使用方法",
+      "step1": "选择一个主题",
+      "step2": "自定义颜色和文本",
+      "step3": "下载你的封面"
+    }
+  },
+  "faq": {
+    "title": "常见问题",
+    "q1": {
+      "question": "如何下载封面图片？",
+      "answer": "点击下载按钮将图片保存为 PNG 或 WEBP 格式。"
+    },
+    "q2": {
+      "question": "可以使用自定义图片吗？",
+      "answer": "可以！你可以搜索 Unsplash 图片或上传自己的图标。"
+    },
+    "q3": {
+      "question": "是否免费使用？",
+      "answer": "是的，CoverView 完全免费且开源。"
+    }
+  },
+  "unsplash": {
+    "searchPlaceholder": "搜索图片...",
+    "searching": "搜索中...",
+    "noResults": "未找到结果",
+    "photoBy": "照片来自"
+  },
+  "messages": {
+    "downloading": "下载中...",
+    "copied": "已复制到剪贴板",
+    "error": "发生错误",
+    "loading": "加载中..."
+  }
+}
