@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ImgContext } from '../../utils/ImgContext';
+
 const OutlineTheme = ({ config }) => {
-    const { title, bgColor, author, icon, font, customIcon } = config;
+    const { title, author, icon, font, fontSize, customIcon } = config;
+    const { themeColors } = useContext(ImgContext);
 
     return (
         <div className="w-full h-full bg-white ">
 
 
-            <div className={`overflow-y-hidden flex flex-col text-gray-800 px-10 h-full`}
-                style={{ backgroundColor: bgColor }}
+            <div className={`overflow-y-hidden flex flex-col px-10 h-full`}
+                style={{ backgroundColor: themeColors.background }}
             >
 
 
@@ -15,18 +18,25 @@ const OutlineTheme = ({ config }) => {
                     {
                         customIcon ?
                             <div className=" m-6">
-                                <img src={customIcon} alt="img" className="rounded-full object-cover w-24 h-24 bg-white p-1 border-white" />
+                                <img src={customIcon} alt="img" className="rounded-full object-cover w-24 h-24 p-1 border" 
+                                    style={{ backgroundColor: themeColors.card, borderColor: themeColors.border }} />
                             </div>
                             :
-                            <div className="  mr-auto ml-2 items-center justify-center flex">
-                                <i className={`devicon-${icon.value}-plain text-white p-4 dev-icon text-8xl`}></i>
+                            <div className="mr-auto ml-2 items-center justify-center flex">
+                                <i className={`devicon-${icon.value}-plain p-4 dev-icon text-8xl`}
+                                    style={{ color: themeColors.primary }}
+                                ></i>
                             </div>
                     }
-                    <h1 className="text-3xl p-4 text-white md:text-5xl  font-bold ">{title}</h1>
+                    <h1 className={`${fontSize} p-4 font-bold`}
+                        style={{ color: themeColors.foreground }}
+                    >{title}</h1>
 
-                    <div className={`${font} w-full h-16  flex  mt-auto mb-0 p-2 px-6  items-center `}>
+                    <div className={`${font} w-full h-16 flex mt-auto mb-0 p-2 px-6 items-center `}>
 
-                        <h2 className="text-2xl text-white font-semibold">{author}</h2>
+                        <h2 className="text-2xl font-semibold"
+                            style={{ color: themeColors.accent }}
+                        >{author}</h2>
 
                     </div>
                 </div>

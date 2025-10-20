@@ -3,8 +3,8 @@ import { ImgContext } from '../../utils/ImgContext';
 import UnsplashSearch from '../UnsplashSearch';
 
 const BackgroundTheme = ({ config }) => {
-    const { title, author, font, icon, customIcon, bgColor } = config;
-    const { unsplashImage, setUnsplashImage } = useContext(ImgContext);
+    const { title, author, font, fontSize, icon, customIcon } = config;
+    const { unsplashImage, setUnsplashImage, themeColors } = useContext(ImgContext);
 
 
     return (
@@ -12,10 +12,12 @@ const BackgroundTheme = ({ config }) => {
 
 
             <div className={`overflow-y-hidden flex flex-col w-full h-full`}
-                style={{ backgroundColor: bgColor }}
+                style={{ backgroundColor: themeColors.background }}
             >
 
-                <div className="flex flex-row items-center bg-white justify-center w-full h-full">
+                <div className="flex flex-row items-center justify-center w-full h-full"
+                    style={{ backgroundColor: themeColors.card }}
+                >
 
                     <div className="w-full h-full">
 
@@ -36,7 +38,7 @@ const BackgroundTheme = ({ config }) => {
                                     </button>
 
                                     <div className={`${font} px-10 py-16 text-center h-full w-full flex flex-col items-center justify-center gap-8`}>
-                                        <h1 className="md:text-5xl text-3xl font-bold text-white break-words max-w-3xl">{title}</h1>
+                                        <h1 className={`${fontSize} font-bold text-white break-words max-w-3xl`}>{title}</h1>
                                         <div className="flex flex-col items-center gap-4">
 
                                             <h2 className="text-xl font-semibold text-white">{author}</h2>
@@ -70,7 +72,9 @@ const BackgroundTheme = ({ config }) => {
                                 </div>
                             </div>
                             :
-                            <div className="flex flex-col p-4 bg-white items-center justify-center h-full w-full">
+                            <div className="flex flex-col p-4 items-center justify-center h-full w-full"
+                                style={{ backgroundColor: themeColors.card }}
+                            >
 
                                 <UnsplashSearch largeImgPreview />
 
