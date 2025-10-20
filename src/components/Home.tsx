@@ -13,26 +13,31 @@ import hashnodeLogo from "../assets/images/hashnode-logo.png";
 import devLogo from "../assets/images/dev-logo.png";
 
 import WallOfLove from "./walloflove";
+import LanguageSwitcher from "./LanguageSwitcher";
+
 const Home = () => {
   return (
     <div className="">
       <div className="">
-        <div className="mx-auto flex p-2 text-xl md:w-10/12">
+        <div className="mx-auto flex items-center p-2 text-xl md:w-10/12">
           <div className="flex items-center">
             <img src={logo} alt="logo" className="mx-2 h-8 w-8" />
             <h1 className="font-Inter text-lg font-semibold md:text-xl">Coverview</h1>
           </div>
 
-          <a
-            href="https://github.com/deadmau5v/CoverView"
-            target="_blank"
-            rel="noreferrer"
-            className="group ml-auto mr-4 flex items-center justify-center rounded-xl bg-gray-700 font-Inter font-semibold text-white duration-300 hover:translate-x-2"
-          >
-            <span className="px-2 py-1 text-xs md:px-4 md:py-2 md:text-sm">
-              ⭐ 在 GitHub 上加星
-            </span>
-          </a>
+          <div className="ml-auto flex items-center gap-2">
+            <LanguageSwitcher />
+            <a
+              href="https://github.com/deadmau5v/CoverView"
+              target="_blank"
+              rel="noreferrer"
+              className="group flex items-center justify-center rounded-xl bg-gray-700 font-Inter font-semibold text-white duration-300 hover:translate-x-2"
+            >
+              <span className="px-2 py-1 text-xs md:px-4 md:py-2 md:text-sm">
+                ⭐ 在 GitHub 上加星
+              </span>
+            </a>
+          </div>
         </div>
 
         <div className="mx-auto flex flex-col items-center py-6 md:px-20">
