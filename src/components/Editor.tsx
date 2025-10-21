@@ -5,6 +5,7 @@ import Select from "react-select";
 import RandomTheme from "./RandomTheme";
 import { ImgProvider, ImgContext } from "../utils/ImgContext";
 import Header from "./Header";
+import { withTranslation, WithTranslation } from "react-i18next";
 
 import { THEMES } from "../utils/constants";
 import { getThemeOptions } from "../utils/colorThemes";
@@ -38,12 +39,12 @@ const defaultSettings = {
 const devIconsUrl = "https://raw.githubusercontent.com/devicons/devicon/master/devicon.json";
 
 // 主题选择器组件（需要访问 Context）
-const ThemeSelector = () => {
+const ThemeSelector = ({ t }: { t: any }) => {
   const { colorTheme, setColorTheme } = React.useContext(ImgContext);
 
   return (
     <div className="flex flex-col">
-      <span className="pb-2 text-sm font-medium">配色主题</span>
+      <span className="pb-2 text-sm font-medium">{t("editor.colorTheme")}</span>
       <Select
         value={getThemeOptions().find((opt) => opt.value === colorTheme)}
         onChange={(selectedOption) => setColorTheme(selectedOption.value)}
@@ -73,14 +74,15 @@ const ThemeSelector = () => {
   );
 };
 
-class Editor extends React.Component {
+class Editor extends React.Component<WithTranslation> {
   state = defaultSettings;
   componentDidMount() {
     // console.log("Mount")
+    const { t } = this.props;
     fetch(devIconsUrl)
       .then((r) => r.json())
       .then((data) => {
-        data.unshift({ name: "custom-upload", displayName: "上传自定义图标" });
+        data.unshift({ name: "custom-upload", displayName: t("editor.customUpload") });
         this.setState({
           devIconOptions: data.map((item) => ({
             value: item.name,
@@ -122,10 +124,11 @@ class Editor extends React.Component {
   };
 
   getFontOptions = () => {
+    const { t } = this.props;
     return [
-      { value: "font-serif", label: "Serif - 衬线体" },
-      { value: "font-sans", label: "Sans - 无衬线体" },
-      { value: "font-mono", label: "Mono - 等宽字体" },
+      { value: "font-serif", label: `Serif - ${t("fonts.serif") || "Serif"}` },
+      { value: "font-sans", label: `Sans - ${t("fonts.sans") || "Sans"}` },
+      { value: "font-mono", label: `Mono - ${t("fonts.mono") || "Mono"}` },
       { value: "font-Inter", label: "Inter" },
       { value: "font-Poppins", label: "Poppins" },
       { value: "font-Anek", label: "Anek" },
@@ -148,6 +151,7 @@ class Editor extends React.Component {
   );
 
   render() {
+    const { t } = this.props;
     return (
       <div className="flex h-screen flex-col">
         <Header />
@@ -157,29 +161,28 @@ class Editor extends React.Component {
             <div className="flex h-full flex-shrink-0 flex-col overflow-y-auto border-r-2 border-dashed border-gray-100 bg-white md:w-3/12 md:min-w-[300px] md:max-w-[400px]">
               <div className="w-full space-y-4 p-4">
                 <div className="flex flex-col">
-                  <span className="pb-2 text-sm font-medium">文章标题</span>
+                  <span className="pb-2 text-sm font-medium">{t("editor.title")}</span>
                   <textarea
-                    type="text"
                     value={this.state.title}
-                    placeholder="在此输入标题"
+                    placeholder={t("editor.titlePlaceholder")}
                     className="h-24 w-full resize-none rounded border border-gray-300 p-2.5 text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
                     onChange={(e) => this.setState({ title: e.target.value })}
                   />
                 </div>
 
                 <div className="flex flex-col">
-                  <span className="pb-2 text-sm font-medium">作者</span>
+                  <span className="pb-2 text-sm font-medium">{t("editor.author")}</span>
                   <input
                     type="text"
                     value={this.state.author}
-                    placeholder="输入作者名称"
+                    placeholder={t("editor.authorPlaceholder")}
                     className="w-full rounded border border-gray-300 p-2.5 text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
                     onChange={(e) => this.setState({ author: e.target.value })}
                   />
                 </div>
 
                 <div className="flex flex-col">
-                  <span className="pb-2 text-sm font-medium">图标</span>
+                  <span className="pb-2 text-sm font-medium">{t("editor.icon")}</span>
                   <Select
                     value={this.state.icon}
                     onChange={(selectedOption) => this.setState({ icon: selectedOption })}
@@ -205,8 +208,8 @@ class Editor extends React.Component {
                           d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                         />
                       </svg>
-                      <span className="mt-2 text-sm text-gray-500">点击选择文件</span>
-                      <span className="mt-1 text-xs text-gray-400">支持 PNG, JPG, SVG</span>
+                      <span className="mt-2 text-sm text-gray-500">{t("editor.uploadPrompt")}</span>
+                      <span className="mt-1 text-xs text-gray-400">{t("editor.uploadFormats")}</span>
                       <input
                         type="file"
                         className="hidden"
@@ -217,13 +220,13 @@ class Editor extends React.Component {
                       />
                     </label>
                     {this.state.customIcon && (
-                      <div className="mt-2 text-xs text-green-600">✓ 图标已上传</div>
+                      <div className="mt-2 text-xs text-green-600">{t("editor.uploadSuccess")}</div>
                     )}
                   </div>
                 )}
 
                 <div className="flex flex-col">
-                  <span className="pb-2 text-sm font-medium">字体</span>
+                  <span className="pb-2 text-sm font-medium">{t("editor.font")}</span>
                   <Select
                     value={this.getFontOptions().find((opt) => opt.value === this.state.font)}
                     onChange={(selectedOption) => this.setState({ font: selectedOption.value })}
@@ -234,27 +237,27 @@ class Editor extends React.Component {
                 </div>
 
                 <div className="flex flex-col">
-                  <span className="pb-2 text-sm font-medium">字体大小</span>
+                  <span className="pb-2 text-sm font-medium">{t("editor.fontSize")}</span>
                   <select
                     value={this.state.fontSize}
                     onChange={(e) => this.setState({ fontSize: e.target.value })}
                     className="w-full rounded border border-gray-300 p-2.5 text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
                   >
-                    <option value="text-2xl">小 (2XL)</option>
-                    <option value="text-3xl">中等 (3XL)</option>
-                    <option value="text-4xl">较大 (4XL)</option>
-                    <option value="text-5xl">大 (5XL)</option>
-                    <option value="text-6xl">特大 (6XL)</option>
-                    <option value="text-7xl">超大 (7XL)</option>
-                    <option value="text-8xl">极大 (8XL)</option>
-                    <option value="text-9xl">最大 (9XL)</option>
+                    <option value="text-2xl">{t("editor.fontSizes.small")}</option>
+                    <option value="text-3xl">{t("editor.fontSizes.medium")}</option>
+                    <option value="text-4xl">{t("editor.fontSizes.large")}</option>
+                    <option value="text-5xl">{t("editor.fontSizes.larger")}</option>
+                    <option value="text-6xl">{t("editor.fontSizes.extraLarge")}</option>
+                    <option value="text-7xl">{t("editor.fontSizes.huge")}</option>
+                    <option value="text-8xl">{t("editor.fontSizes.massive")}</option>
+                    <option value="text-9xl">{t("editor.fontSizes.maximum")}</option>
                   </select>
                 </div>
 
-                <ThemeSelector />
+                <ThemeSelector t={t} />
 
                 <div className="flex flex-col">
-                  <span className="pb-2 text-sm font-medium">尺寸</span>
+                  <span className="pb-2 text-sm font-medium">{t("editor.size")}</span>
                   <select
                     onChange={this.handleSizePresetChange}
                     value={this.state.sizePreset}
@@ -265,17 +268,17 @@ class Editor extends React.Component {
                         {preset.label}
                       </option>
                     ))}
-                    <option value="custom">自定义</option>
+                    <option value="custom">{t("sizes.custom")}</option>
                   </select>
                   <span className="mt-1.5 text-xs text-gray-500">
-                    当前尺寸：{this.state.width || "—"} × {this.state.height || "—"} px
+                    {t("editor.currentSize")}：{this.state.width || "—"} × {this.state.height || "—"} px
                   </span>
                 </div>
 
                 {this.state.sizePreset === "custom" && (
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex flex-col">
-                      <span className="pb-2 text-sm font-medium">宽度 (px)</span>
+                      <span className="pb-2 text-sm font-medium">{t("editor.width")}</span>
                       <input
                         type="number"
                         min="1"
@@ -285,7 +288,7 @@ class Editor extends React.Component {
                       />
                     </div>
                     <div className="flex flex-col">
-                      <span className="pb-2 text-sm font-medium">高度 (px)</span>
+                      <span className="pb-2 text-sm font-medium">{t("editor.height")}</span>
                       <input
                         type="number"
                         min="1"
@@ -310,7 +313,7 @@ class Editor extends React.Component {
                     <path d="M12 16c1.671 0 3-1.331 3-3s-1.329-3-3-3-3 1.331-3 3 1.329 3 3 3z"></path>
                     <path d="M20.817 11.186a8.94 8.94 0 0 0-1.355-3.219 9.053 9.053 0 0 0-2.43-2.43 8.95 8.95 0 0 0-3.219-1.355 9.028 9.028 0 0 0-1.838-.18V2L8 5l3.975 3V6.002c.484-.002.968.044 1.435.14a6.961 6.961 0 0 1 2.502 1.053 7.005 7.005 0 0 1 1.892 1.892A6.967 6.967 0 0 1 19 13a7.032 7.032 0 0 1-.55 2.725 7.11 7.11 0 0 1-.644 1.188 7.2 7.2 0 0 1-.858 1.039 7.028 7.028 0 0 1-3.536 1.907 7.13 7.13 0 0 1-2.822 0 6.961 6.961 0 0 1-2.503-1.054 7.002 7.002 0 0 1-1.89-1.89A6.996 6.996 0 0 1 5 13H3a9.02 9.02 0 0 0 1.539 5.034 9.096 9.096 0 0 0 2.428 2.428A8.95 8.95 0 0 0 12 22a9.09 9.09 0 0 0 1.814-.183 9.014 9.014 0 0 0 3.218-1.355 8.886 8.886 0 0 0 1.331-1.099 9.228 9.228 0 0 0 1.1-1.332A8.952 8.952 0 0 0 21 13a9.09 9.09 0 0 0-.183-1.814z"></path>
                   </svg>
-                  <span className="font-Inter font-medium">全部重置</span>
+                  <span className="font-Inter font-medium">{t("editor.resetAll")}</span>
                 </button>
               </div>
             </div>
@@ -327,7 +330,7 @@ class Editor extends React.Component {
 
             <div className="flex h-full flex-shrink-0 flex-col border-l-2 border-dashed border-gray-100 bg-white md:w-60 md:min-w-[240px] md:max-w-[320px]">
               <div className="flex flex-shrink-0 items-center p-4">
-                <h2 className="font-inter pl-2 text-lg font-semibold">主题</h2>
+                <h2 className="font-inter pl-2 text-lg font-semibold">{t("editor.themes")}</h2>
                 <div className="ml-auto mr-1 p-2">
                   <RandomTheme onThemeChange={this.getRandomTheme} />
                 </div>
@@ -358,4 +361,4 @@ class Editor extends React.Component {
   }
 }
 
-export default Editor;
+export default withTranslation()(Editor);

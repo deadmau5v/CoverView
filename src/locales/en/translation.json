@@ -10,25 +10,47 @@
     "tagline": "Create beautiful cover images for your blogs",
     "getStarted": "Get Started",
     "faq": "FAQ",
-    "home": "Home"
+    "home": "Home",
+    "starOnGithub": "⭐ Star on GitHub",
+    "shareOnTwitter": "Share on Twitter"
   },
   "editor": {
-    "titlePlaceholder": "A beginners guide to frontend development",
-    "authorPlaceholder": "Your Name",
+    "title": "Article Title",
+    "titlePlaceholder": "Enter title here",
+    "author": "Author",
+    "authorPlaceholder": "Enter author name",
+    "icon": "Icon",
     "selectIcon": "Select Icon",
     "customUpload": "Upload Custom Icon",
+    "uploadPrompt": "Click to select file",
+    "uploadFormats": "Supports PNG, JPG, SVG",
+    "uploadSuccess": "✓ Icon uploaded",
     "theme": "Theme",
     "colorTheme": "Color Theme",
     "pattern": "Pattern",
     "font": "Font",
     "fontSize": "Font Size",
+    "fontSizes": {
+      "small": "Small (2XL)",
+      "medium": "Medium (3XL)",
+      "large": "Large (4XL)",
+      "larger": "Larger (5XL)",
+      "extraLarge": "Extra Large (6XL)",
+      "huge": "Huge (7XL)",
+      "massive": "Massive (8XL)",
+      "maximum": "Maximum (9XL)"
+    },
+    "size": "Size",
     "canvasSize": "Canvas Size",
     "customSize": "Custom Size",
-    "width": "Width",
-    "height": "Height",
+    "currentSize": "Current size",
+    "width": "Width (px)",
+    "height": "Height (px)",
     "downloadFormat": "Download Format",
     "searchBackground": "Search Background Image",
-    "randomTheme": "Random Theme"
+    "randomTheme": "Random Theme",
+    "resetAll": "Reset All",
+    "themes": "Themes"
   },
   "themes": {
     "background": "Background",
@@ -55,7 +77,10 @@
     "inter": "Inter",
     "poppins": "Poppins",
     "anek": "Anek Latin",
-    "nunito": "Nunito"
+    "nunito": "Nunito",
+    "serif": "Serif",
+    "sans": "Sans-serif",
+    "mono": "Monospace"
   },
   "sizes": {
     "16:9": "16:9 (1280×720)",
@@ -74,9 +99,42 @@
   },
   "home": {
     "hero": {
-      "title": "Create Beautiful Blog Covers",
-      "subtitle": "Design stunning cover images for your blog posts in seconds",
-      "cta": "Start Creating"
+      "title": "Making cover images for your blogs is now super easy",
+      "cta": "Create Now"
+    },
+    "section1": {
+      "title": "Why are cover images more important than you think?",
+      "feature1": {
+        "description": "Around <1>7 million</1> blog posts are published daily, and with the rise of new writing tools, this number keeps growing."
+      },
+      "feature2": {
+        "description": "Quality covers bring <1>higher conversion rates</1> compared to randomly selected stock photos."
+      }
+    },
+    "section2": {
+      "title": "With coverview, you can create covers in <1>just seconds</1>",
+      "step1Title": "Step 1",
+      "step1Description": "Fill in blog title and author name",
+      "step2Title": "Step 2",
+      "step2Description": "Customize with colors, fonts, and icons",
+      "step3Title": "Step 3",
+      "step3Description": "Choose your style from different themes",
+      "step3Subtitle": "Unsplash integration, custom icons, build your personal brand."
+    },
+    "section3": {
+      "title": "Supported platforms",
+      "description": "Works with Hashnode, Dev.to, and more"
+    },
+    "footer": {
+      "tagline": "Simple, Fast, Easy to Use",
+      "subtitle": "Focus on writing, no more worrying about cover images.",
+      "cta": "Try it free, start now →",
+      "builtBy": "Built with 💛 by",
+      "and": "and",
+      "links": {
+        "guide": "User Guide",
+        "github": "GitHub"
+      }
     },
     "features": {
       "title": "Features",
@@ -96,12 +154,6 @@
         "title": "Dev Icons",
         "description": "100+ icons or upload your own"
       }
-    },
-    "howItWorks": {
-      "title": "How It Works",
-      "step1": "Choose a theme",
-      "step2": "Customize colors and text",
-      "step3": "Download your cover"
     }
   },
   "faq": {

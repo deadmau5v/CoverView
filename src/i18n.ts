@@ -4,6 +4,9 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 import enTranslation from "./locales/en/translation.json";
 import zhTranslation from "./locales/zh/translation.json";
+import jaTranslation from "./locales/ja/translation.json";
+import koTranslation from "./locales/ko/translation.json";
+import ruTranslation from "./locales/ru/translation.json";
 
 const resources = {
   en: {
@@ -12,31 +15,34 @@ const resources = {
   zh: {
     translation: zhTranslation,
   },
+  ja: {
+    translation: jaTranslation,
+  },
+  ko: {
+    translation: koTranslation,
+  },
+  ru: {
+    translation: ruTranslation,
+  },
 };
 
 i18n
-  // 检测用户语言
   .use(LanguageDetector)
-  // 将 i18next 传递给 react-i18next
   .use(initReactI18next)
-  // 初始化 i18next
   .init({
     resources,
-    fallbackLng: "en", // 如果检测不到语言，使用英语
+    fallbackLng: "en",
     debug: false,
 
     interpolation: {
-      escapeValue: false, // React 已经安全处理了
+      escapeValue: false,
     },
 
     detection: {
-      // 检测顺序
       order: ["navigator", "htmlTag", "path", "subdomain"],
 
-      // 缓存用户选择的语言
       caches: ["localStorage", "cookie"],
 
-      // 可选：排除某些语言检测来源
       excludeCacheFor: ["cimode"],
     },
   });
