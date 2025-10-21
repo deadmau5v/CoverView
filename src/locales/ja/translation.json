@@ -1,0 +1,186 @@
+{
+  "common": {
+    "title": "タイトル",
+    "author": "著者",
+    "download": "ダウンロード",
+    "preview": "プレビュー",
+    "settings": "設定"
+  },
+  "header": {
+    "tagline": "ブログ用の美しいカバー画像を作成",
+    "getStarted": "始める",
+    "faq": "よくある質問",
+    "home": "ホーム",
+    "starOnGithub": "⭐ GitHub でスター",
+    "shareOnTwitter": "Twitter で共有"
+  },
+  "editor": {
+    "title": "記事タイトル",
+    "titlePlaceholder": "ここにタイトルを入力",
+    "author": "著者",
+    "authorPlaceholder": "著者名を入力",
+    "icon": "アイコン",
+    "selectIcon": "アイコンを選択",
+    "customUpload": "カスタムアイコンをアップロード",
+    "uploadPrompt": "クリックしてファイルを選択",
+    "uploadFormats": "PNG、JPG、SVG対応",
+    "uploadSuccess": "✓ アイコンがアップロードされました",
+    "theme": "テーマ",
+    "colorTheme": "カラーテーマ",
+    "pattern": "パターン",
+    "font": "フォント",
+    "fontSize": "フォントサイズ",
+    "fontSizes": {
+      "small": "小 (2XL)",
+      "medium": "中 (3XL)",
+      "large": "大 (4XL)",
+      "larger": "より大きい (5XL)",
+      "extraLarge": "特大 (6XL)",
+      "huge": "超大 (7XL)",
+      "massive": "極大 (8XL)",
+      "maximum": "最大 (9XL)"
+    },
+    "size": "サイズ",
+    "canvasSize": "キャンバスサイズ",
+    "customSize": "カスタムサイズ",
+    "currentSize": "現在のサイズ",
+    "width": "幅 (px)",
+    "height": "高さ (px)",
+    "downloadFormat": "ダウンロード形式",
+    "searchBackground": "背景画像を検索",
+    "randomTheme": "ランダムテーマ",
+    "resetAll": "すべてリセット",
+    "themes": "テーマ"
+  },
+  "themes": {
+    "background": "背景",
+    "stylish": "スタイリッシュ",
+    "basic": "ベーシック",
+    "modern": "モダン",
+    "outline": "アウトライン",
+    "preview": "プレビュー",
+    "mobile": "モバイルモックアップ"
+  },
+  "colorThemes": {
+    "oneDark": "One Dark",
+    "catppuccinLatte": "Catppuccin Latte",
+    "catppuccinFrappe": "Catppuccin Frappé",
+    "catppuccinMacchiato": "Catppuccin Macchiato",
+    "catppuccinMocha": "Catppuccin Mocha",
+    "nord": "Nord",
+    "tokyoNight": "Tokyo Night",
+    "gruvbox": "Gruvbox",
+    "solarized": "Solarized",
+    "dracula": "Dracula"
+  },
+  "fonts": {
+    "inter": "Inter",
+    "poppins": "Poppins",
+    "anek": "Anek Latin",
+    "nunito": "Nunito",
+    "serif": "セリフ",
+    "sans": "サンセリフ",
+    "mono": "等幅"
+  },
+  "sizes": {
+    "16:9": "16:9 (1280×720)",
+    "4:3": "4:3 (1024×768)",
+    "16:10": "16:10 (1280×800)",
+    "1:1": "1:1 (800×800)",
+    "3:2": "3:2 (1200×800)",
+    "custom": "カスタム"
+  },
+  "patterns": {
+    "none": "なし",
+    "dots": "ドット",
+    "zigzag": "ジグザグ",
+    "cross": "クロス",
+    "diagonal": "対角線"
+  },
+  "home": {
+    "hero": {
+      "title": "ブログのカバー画像作成がとても簡単に",
+      "cta": "今すぐ作成"
+    },
+    "section1": {
+      "title": "カバー画像はなぜ重要なのか？",
+      "feature1": {
+        "description": "毎日約<1>700万</1>件のブログ記事が公開されており、新しいライティングツールの台頭により、この数字は増え続けています。"
+      },
+      "feature2": {
+        "description": "質の高いカバーは、ランダムに選んだストックフォトと比べて<1>より高いコンバージョン率</1>をもたらします。"
+      }
+    },
+    "section2": {
+      "title": "coverviewを使えば、<1>わずか数秒</1>でカバーを作成できます",
+      "step1Title": "ステップ 1",
+      "step1Description": "ブログのタイトルと著者名を入力",
+      "step2Title": "ステップ 2",
+      "step2Description": "色、フォント、アイコンでカスタマイズ",
+      "step3Title": "ステップ 3",
+      "step3Description": "さまざまなテーマからスタイルを選択",
+      "step3Subtitle": "Unsplash統合、カスタムアイコンで、あなたのブランドを構築。"
+    },
+    "section3": {
+      "title": "対応プラットフォーム",
+      "description": "Hashnode、Dev.toなどに対応"
+    },
+    "footer": {
+      "tagline": "シンプル、高速、使いやすい",
+      "subtitle": "執筆に集中し、カバー画像の心配はもう不要。",
+      "cta": "無料で試す、今すぐ開始 →",
+      "builtBy": "💛で作成：",
+      "and": "と",
+      "links": {
+        "guide": "ユーザーガイド",
+        "github": "GitHub"
+      }
+    },
+    "features": {
+      "title": "機能",
+      "fast": {
+        "title": "超高速",
+        "description": "数秒でプロフェッショナルなカバーを作成"
+      },
+      "themes": {
+        "title": "複数のテーマ",
+        "description": "7つの美しいテーマから選択"
+      },
+      "customization": {
+        "title": "高度なカスタマイズ",
+        "description": "9つのカラーテーマ、複数のフォントとサイズ"
+      },
+      "icons": {
+        "title": "開発アイコン",
+        "description": "100以上のアイコンまたは独自のアイコンをアップロード"
+      }
+    }
+  },
+  "faq": {
+    "title": "よくある質問",
+    "q1": {
+      "question": "カバー画像をダウンロードするには？",
+      "answer": "ダウンロードボタンをクリックして、PNGまたはWEBP形式で画像を保存します。"
+    },
+    "q2": {
+      "question": "カスタム画像を使用できますか？",
+      "answer": "はい！Unsplashの画像を検索したり、独自のアイコンをアップロードできます。"
+    },
+    "q3": {
+      "question": "無料で使用できますか？",
+      "answer": "はい、CoverViewは完全に無料でオープンソースです。"
+    }
+  },
+  "unsplash": {
+    "searchPlaceholder": "画像を検索...",
+    "searching": "検索中...",
+    "noResults": "結果が見つかりません",
+    "photoBy": "写真提供："
+  },
+  "messages": {
+    "downloading": "ダウンロード中...",
+    "copied": "クリップボードにコピーしました",
+    "error": "エラーが発生しました",
+    "loading": "読み込み中..."
+  }
+}
