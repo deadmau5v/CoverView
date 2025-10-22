@@ -247,7 +247,7 @@ const Home = () => {
           </div>
 
           <footer className="mx-auto flex w-full flex-col-reverse items-center justify-center gap-2 p-10 font-Inter md:w-10/12 md:flex-row md:justify-between md:px-20">
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-3">
               <span className="text-sm md:text-lg">
                 {t("home.footer.builtBy")}{" "}
                 <a
@@ -268,6 +268,19 @@ const Home = () => {
                   Rutik Wankhade
                 </a>
               </span>
+              <a
+                href="https://www.netlify.com"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 text-sm text-gray-300 hover:text-white md:text-base"
+              >
+                <span>{t("home.footer.poweredBy")}</span>
+                <img
+                  src="https://www.netlify.com/v3/img/components/netlify-color-accent.svg"
+                  alt="Netlify"
+                  className="h-6"
+                />
+              </a>
             </div>
 
             <div className="flex flex-wrap gap-4 text-sm md:text-lg">
