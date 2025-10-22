@@ -39,12 +39,15 @@ i18n
     },
 
     detection: {
-      order: ["navigator", "htmlTag", "path", "subdomain"],
+      order: ["localStorage", "navigator", "htmlTag", "path", "subdomain"],
 
       caches: ["localStorage", "cookie"],
 
       excludeCacheFor: ["cimode"],
     },
+
+    // Language code normalization
+    load: "languageOnly", // This will convert "zh-CN" to "zh", "en-US" to "en", etc.
   });
 
 export default i18n;

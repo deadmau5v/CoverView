@@ -16,10 +16,19 @@ const LanguageSwitcher: React.FC = () => {
     i18n.changeLanguage(languageCode);
   };
 
+  // Normalize the current language to match our language codes
+  // e.g., "zh-CN" -> "zh", "en-US" -> "en"
+  const getCurrentLanguage = () => {
+    const currentLang = i18n.language;
+    const normalizedLang = currentLang.split("-")[0];
+    // Check if the normalized language exists in our languages list
+    return languages.some((lang) => lang.code === normalizedLang) ? normalizedLang : "en";
+  };
+
   return (
     <div className="relative inline-block">
       <select
-        value={i18n.language}
+        value={getCurrentLanguage()}
         onChange={(e) => changeLanguage(e.target.value)}
         className="appearance-none rounded-lg border border-gray-300 bg-white px-4 py-2 pr-8 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
       >
