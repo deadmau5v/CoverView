@@ -12,7 +12,8 @@
     "faq": "よくある質問",
     "home": "ホーム",
     "starOnGithub": "⭐ GitHub でスター",
-    "shareOnTwitter": "Twitter で共有"
+    "shareOnTwitter": "Twitter で共有",
+    "codeOfConduct": "行動規範"
   },
   "editor": {
     "title": "記事タイトル",
@@ -133,6 +134,7 @@
       "and": "と",
       "links": {
         "guide": "ユーザーガイド",
+        "codeOfConduct": "行動規範",
         "github": "GitHub"
       }
     },

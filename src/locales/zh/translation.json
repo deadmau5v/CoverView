@@ -12,7 +12,8 @@
     "faq": "常见问题",
     "home": "首页",
     "starOnGithub": "⭐ 在 GitHub 上加星",
-    "shareOnTwitter": "分享到 Twitter"
+    "shareOnTwitter": "分享到 Twitter",
+    "codeOfConduct": "行为准则"
   },
   "editor": {
     "title": "文章标题",
@@ -133,6 +134,7 @@
       "and": "和",
       "links": {
         "guide": "使用指南",
+        "codeOfConduct": "行为准则",
         "github": "GitHub"
       }
     },

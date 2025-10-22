@@ -185,9 +185,7 @@ const Home = () => {
               {t("home.section2.step3Description")}
             </p>
 
-            <p className="text-lg text-gray-500 md:text-xl">
-              {t("home.section2.step3Subtitle")}
-            </p>
+            <p className="text-lg text-gray-500 md:text-xl">{t("home.section2.step3Subtitle")}</p>
           </div>
 
           <div className="hideout flex p-6 md:w-1/2">
@@ -275,6 +273,9 @@ const Home = () => {
             <div className="flex flex-wrap gap-4 text-sm md:text-lg">
               <Link to="/faq" className="hover:underline">
                 {t("home.footer.links.guide")}
+              </Link>
+              <Link to="/code-of-conduct" className="hover:underline">
+                {t("home.footer.links.codeOfConduct")}
               </Link>
               <a
                 href="https://github.com/deadmau5v/CoverView"

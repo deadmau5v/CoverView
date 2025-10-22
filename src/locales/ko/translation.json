@@ -12,7 +12,8 @@
     "faq": "자주 묻는 질문",
     "home": "홈",
     "starOnGithub": "⭐ GitHub에서 스타하기",
-    "shareOnTwitter": "Twitter에 공유"
+    "shareOnTwitter": "Twitter에 공유",
+    "codeOfConduct": "행동 강령"
   },
   "editor": {
     "title": "게시글 제목",
@@ -133,6 +134,7 @@
       "and": "및",
       "links": {
         "guide": "사용 가이드",
+        "codeOfConduct": "행동 강령",
         "github": "GitHub"
       }
     },

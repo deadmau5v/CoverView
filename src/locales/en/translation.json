@@ -12,7 +12,8 @@
     "faq": "FAQ",
     "home": "Home",
     "starOnGithub": "⭐ Star on GitHub",
-    "shareOnTwitter": "Share on Twitter"
+    "shareOnTwitter": "Share on Twitter",
+    "codeOfConduct": "Code of Conduct"
   },
   "editor": {
     "title": "Article Title",
@@ -133,6 +134,7 @@
       "and": "and",
       "links": {
         "guide": "User Guide",
+        "codeOfConduct": "Code of Conduct",
         "github": "GitHub"
       }
     },

@@ -12,7 +12,8 @@
     "faq": "Часто задаваемые вопросы",
     "home": "Главная",
     "starOnGithub": "⭐ Поставить звезду на GitHub",
-    "shareOnTwitter": "Поделиться в Twitter"
+    "shareOnTwitter": "Поделиться в Twitter",
+    "codeOfConduct": "Кодекс поведения"
   },
   "editor": {
     "title": "Заголовок статьи",
@@ -133,6 +134,7 @@
       "and": "и",
       "links": {
         "guide": "Руководство пользователя",
+        "codeOfConduct": "Кодекс поведения",
         "github": "GitHub"
       }
     },
