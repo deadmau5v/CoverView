@@ -10,6 +10,8 @@ interface ComponentToImgProps {
   downloadAs?: string;
 }
 
+type ExportFormat = "PNG" | "WEBP" | "JPG";
+
 export default function ComponentToImg({ children, downloadAs = "WEBP" }: ComponentToImgProps) {
   const [loading, setLoading] = useState(false);
   const { unsplashImage } = useImgContext();
@@ -24,7 +26,19 @@ export default function ComponentToImg({ children, downloadAs = "WEBP" }: Compon
     document.body.removeChild(anchor);
   };
 
-  const convertToWebp = async (data: string, quality = 0.8): Promise<string> => {
+  const normalizeExportFormat = (format: string): ExportFormat => {
+    const normalized = format.toUpperCase();
+    if (normalized === "WEBP" || normalized === "JPG" || normalized === "PNG") {
+      return normalized;
+    }
+    return "PNG";
+  };
+
+  const convertImageFormat = async (
+    data: string,
+    mimeType: "image/webp" | "image/jpeg",
+    quality = 0.85,
+  ): Promise<string> => {
     try {
       const image = await new Promise<HTMLImageElement>((resolve, reject) => {
         const img = new Image();
@@ -43,14 +57,14 @@ export default function ComponentToImg({ children, downloadAs = "WEBP" }: Compon
       }
 
       context.drawImage(image, 0, 0);
-      const webpData = canvas.toDataURL("image/webp", quality);
-      if (webpData && webpData.startsWith("data:image/webp")) {
-        return webpData;
+      const convertedData = canvas.toDataURL(mimeType, quality);
+      if (convertedData && convertedData.startsWith(`data:${mimeType}`)) {
+        return convertedData;
       }
 
       return data;
     } catch (error) {
-      console.error("Unable to convert image to WebP", error);
+      console.error(`Unable to convert image to ${mimeType}`, error);
       return data;
     }
   };
@@ -88,10 +102,20 @@ export default function ComponentToImg({ children, downloadAs = "WEBP" }: Compon
         pixelRatio: scale,
       });
 
-      const shouldExportWebp = downloadAs.toUpperCase() === "WEBP";
-      const processedData = shouldExportWebp ? await convertToWebp(pngData) : pngData;
-      const isWebp = processedData.startsWith("data:image/webp");
-      const filename = isWebp ? "cover.webp" : "cover.png";
+      const selectedFormat = normalizeExportFormat(downloadAs);
+      let processedData = pngData;
+
+      if (selectedFormat === "WEBP") {
+        processedData = await convertImageFormat(pngData, "image/webp", 0.85);
+      } else if (selectedFormat === "JPG") {
+        processedData = await convertImageFormat(pngData, "image/jpeg", 0.9);
+      }
+
+      const filename = processedData.startsWith("data:image/webp")
+        ? "cover.webp"
+        : processedData.startsWith("data:image/jpeg")
+          ? "cover.jpg"
+          : "cover.png";
       await saveImage(processedData, filename);
 
       await trackDownload();

@@ -23,6 +23,12 @@ const SIZE_PRESETS = [
   { label: "3:2 (1200×800)", value: "3:2", width: "1200", height: "800" },
 ];
 
+const DOWNLOAD_FORMAT_OPTIONS = [
+  { label: "PNG", value: "PNG" },
+  { label: "WEBP", value: "WEBP" },
+  { label: "JPG", value: "JPG" },
+];
+
 const defaultSettings = {
   title: "A beginners guide to frontend development",
   pattern: "",
@@ -305,6 +311,21 @@ export default function Editor() {
                   </div>
                 </div>
               )}
+
+              <div className="flex flex-col">
+                <span className="pb-2 text-sm font-medium">{t("editor.downloadFormat")}</span>
+                <select
+                  value={settings.download}
+                  onChange={(e) => setSettings((prev) => ({ ...prev, download: e.target.value }))}
+                  className="w-full rounded border border-gray-300 p-2.5 text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                >
+                  {DOWNLOAD_FORMAT_OPTIONS.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
               <button
                 className="mt-2 flex w-full items-center justify-center rounded-lg bg-gray-700 px-4 py-2.5 text-base text-white transition-colors duration-200 hover:bg-gray-800"
