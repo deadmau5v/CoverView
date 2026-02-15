@@ -40,7 +40,11 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Query parameter required" }, { status: 400 });
   }
 
-  const apiKey = process.env.PEXELS_API_KEY;
+  const apiKey =
+    process.env.PEXELS_API_KEY ||
+    process.env.REACT_APP_PEXELS_API_KEY ||
+    process.env.VITE_PEXELS_API_KEY ||
+    process.env.NEXT_PUBLIC_PEXELS_API_KEY;
   if (!apiKey) {
     return NextResponse.json({ error: "Pexels API key not configured" }, { status: 500 });
   }
