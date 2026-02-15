@@ -1,8 +1,9 @@
 # CoverView Enhanced
 
-Creating beautiful, customizable cover images for your blogs in seconds.
+Create customizable blog and social cover images in seconds.
 
-> **Note:** This is an enhanced fork of [rutikwankhade/CoverView](https://github.com/rutikwankhade/CoverView) with additional features and modern tech stack.
+> This is an enhanced fork of [rutikwankhade/CoverView](https://github.com/rutikwankhade/CoverView).
+> Latest major update: migrated from Vite SPA to Next.js 15 App Router.
 
 <p>
 <a href="https://github.com/rutikwankhade/CoverView"><img src="https://img.shields.io/badge/Original-CoverView-blue"></a>
@@ -10,157 +11,126 @@ Creating beautiful, customizable cover images for your blogs in seconds.
 <a href="https://lbesson.mit-license.org"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
 </p>
 
+<img src="https://gist.github.com/user-attachments/assets/1d1c1833-29bc-45d6-97dd-e26c2d1019cb" height="auto" width="800px" margin="20px">
 
+## Features
 
+- Server-rendered app shell with Next.js App Router (`app/` directory)
+- Cover editor with multiple visual themes and color themes
+- Canvas size presets and typography customization
+- Image search with two sources: Unsplash and Pexels
+- Server-side API proxy routes for image search/download tracking
+- Multi-language support with i18next
+- Export cover images using `html-to-image`
 
-<img src="https://gist.github.com/user-attachments/assets/1d1c1833-29bc-45d6-97dd-e26c2d1019cb
-" height="auto" width="800px"  margin="20px">
+## Tech Stack
 
+- Next.js 15
+- React 19 + TypeScript
+- Tailwind CSS
+- i18next / react-i18next
+- html-to-image
+- Unsplash API + Pexels API (via Next.js API routes)
 
+## Project Structure
 
- 
-
-
-## ⚡ Features
-
-### Core Features (Original)
-- 🚀 Super fast and easy to use
-- ✨ Unsplash integration to search images
-- 🌠 100+ dev icons with option to upload custom icon
-- 💾 Export as PNG or WEBP format
-
-### ✨ Enhanced Features (This Fork)
-- 🎨 **9 Color Themes**: One Dark, Catppuccin (Latte, Frappé, Macchiato, Mocha), Nord, Tokyo Night, Gruvbox, Solarized, Dracula
-- 🖼️ **7 Visual Themes**: Background, Stylish, Basic, Modern, Outline, Preview, Mobile Mockup
-- 📐 **Multiple Canvas Sizes**: 16:9, 4:3, 16:10, 1:1, 3:2 presets with custom dimensions support
-- 🔤 **4 Font Families**: Inter, Poppins, Anek Latin, Nunito
-- 📏 **Dynamic Font Sizing**: Adjustable text size for perfect layout
-- 🎭 **Background Patterns**: Dots, Zigzag, Cross, and more SVG patterns
-- 🌐 **Internationalization Ready**: Multi-language support structure
-- ⚡ **Modern Tech Stack**: Vite, React 18, TypeScript, Bun
-- 🎯 **Auto-format on Save**: Prettier with Tailwind CSS plugin
-
-## 🛠️ Tech Stack
-
-- **Frontend**: React 18 with TypeScript
-- **Build Tool**: Vite 7.x (migrated from Create React App)
-- **Package Manager**: Bun 1.3+
-- **Styling**: Tailwind CSS with custom patterns
-- **Code Quality**: Prettier with Tailwind CSS plugin
-- **Image Processing**: dom-to-image for export
-- **API Integration**: Unsplash JS SDK
-
-## 📦 Installation & Development
-
-### Prerequisites
-- [Bun](https://bun.sh/) 1.3 or higher
-- Node.js 18+ (if using npm/yarn instead)
-
-### Quick Start
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/CoverView.git
-cd CoverView/
-
-# Install dependencies
-bun install
-
-# Set up environment variables
-cp .env.example .env
-# Edit .env and add your Unsplash API key
-
-# Start development server
-bun run dev
-# or simply
-bun dev
+```text
+app/                 # App Router pages and API routes
+components/          # UI and editor components
+components/themes/   # Theme renderer components
+hooks/               # Custom hooks (image context)
+lib/                 # Constants, i18n, Unsplash client
+locales/             # Translation files
+public/              # Static assets
 ```
 
-The app will be available at `http://localhost:3000`
+## Getting Started
 
-### Available Scripts
+### Prerequisites
+
+- Node.js 18.18+ (or newer LTS)
+- npm
+
+### Installation
 
 ```bash
-# Development
-bun run dev              # Start dev server
-bun run build            # Production build
-bun run preview          # Preview production build
-
-# Code Quality
-bun run format           # Format all files with Prettier
-bun run format:check     # Check formatting
-bun run build:check      # Build with TypeScript type checking
+git clone https://github.com/yourusername/CoverView.git
+cd CoverView
+npm install
 ```
 
 ### Environment Variables
 
-Create a `.env` file in the root directory:
+Create `.env.local` in the project root:
 
 ```env
-VITE_UNSPLASH_ACCESS_KEY=your_unsplash_access_key_here
+UNSPLASH_ACCESS_KEY=your_unsplash_access_key_here
+PEXELS_API_KEY=your_pexels_api_key_here
 ```
 
-Get your Unsplash API key from [Unsplash Developers](https://unsplash.com/developers)
+- `UNSPLASH_ACCESS_KEY`: required for Unsplash search
+- `PEXELS_API_KEY`: required for Pexels search
 
+### Run Locally
 
-## 👇 Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+```bash
+npm run dev
+```
 
+Open `http://localhost:3000`.
 
-1. Fork it (<https://github.com/rutikwankhade/CoverView/fork>)
-2. Create your feature branch (`git checkout -b feature/fooBar`)
-3. Commit your changes (`git commit -am 'Add some fooBar'`)
-4. Push to the branch (`git push origin feature/fooBar`)
-5. Create a new Pull Request
+## Available Scripts
 
+```bash
+npm run dev          # Start development server
+npm run build        # Create production build
+npm run start        # Start production server
+npm run lint         # Run Next.js lint
+npm run format       # Format with Prettier
+npm run format:check # Check formatting
+```
 
-## 🎯 What's Different from Original?
+## Routes
 
-This fork enhances the original CoverView with:
+- `/` home page
+- `/editor` cover editor
+- `/faq` FAQ
+- `/code-of-conduct` code of conduct
 
-1. **More Customization Options**
-   - 9 professionally designed color themes vs original's color picker
-   - Multiple canvas size presets (16:9, 4:3, etc.)
-   - Font size adjustment
-   - Additional font choices
+## API Routes
 
-2. **Modern Development Stack**
-   - Migrated from Create React App to Vite (faster builds, better DX)
-   - Full TypeScript support
-   - Bun package manager for faster installs
-   - Prettier auto-formatting
+- `GET /api/unsplash/search?q=<keyword>&page=<n>`
+- `POST /api/unsplash/download`
+- `GET /api/pexels/search?q=<keyword>&page=<n>`
+- `POST /api/pexels/download`
 
-3. **Better Developer Experience**
-   - Format-on-save with VS Code integration
-   - Comprehensive documentation (CLAUDE.md)
-   - Migration guide included
-   - Better project structure
+## Breaking Changes (Migration Notes)
 
-4. **Enhanced UI/UX**
-   - Theme preview system
-   - Better color scheme organization
-   - Responsive canvas scaling
+- Migrated from Vite SPA to Next.js App Router
+- Removed legacy `src/`-based entry structure
+- Environment variable renamed:
+  - `VITE_UNSPLASH_ACCESS_KEY` -> `UNSPLASH_ACCESS_KEY`
+- Added server-side API routes for Unsplash/Pexels integrations
+- Replaced `dom-to-image`/`react-component-export-image` usage with `html-to-image`
 
-## 🙏 Acknowledgments
+## Contributing
 
-### Original Project
-- [rutikwankhade/CoverView](https://github.com/rutikwankhade/CoverView) - Original creator and maintainer
-- Visit [rutik.dev](https://rutik.dev) for more awesome projects
+Pull requests are welcome. For major changes, please open an issue first.
 
-### Dependencies & Tools
-- [dom-to-image](https://github.com/tsayen/dom-to-image) - DOM to image conversion
-- [Hero Patterns](https://www.heropatterns.com/) - SVG background patterns
-- [Devicons](https://github.com/devicons/devicon) - Developer icons
-- [Unsplash](https://unsplash.com/) - Beautiful free images
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-- [Vite](https://vitejs.dev/) - Next generation frontend tooling
+1. Fork the repository
+2. Create your branch (`git checkout -b feature/my-change`)
+3. Commit your changes (`git commit -m "feat: describe change"`)
+4. Push to your branch (`git push origin feature/my-change`)
+5. Open a pull request
 
-## 📄 License
+## Acknowledgments
 
-MIT License - see [LICENSE](LICENSE) for details
+- [rutikwankhade/CoverView](https://github.com/rutikwankhade/CoverView) for the original project
+- [Unsplash](https://unsplash.com/) for image APIs
+- [Pexels](https://www.pexels.com/api/) for image APIs
 
----
+## License
 
-⭐ If you found this useful, please star this repository and the [original project](https://github.com/rutikwankhade/CoverView)!
+MIT License. See [LICENSE](LICENSE).
 
 
