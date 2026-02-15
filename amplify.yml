@@ -3,10 +3,10 @@ frontend:
   phases:
     preBuild:
       commands:
-        - bun i
+        - npm install
     build:
       commands:
-        - bun run build
+        - npm run build
   artifacts:
     baseDirectory: .next
     files:
