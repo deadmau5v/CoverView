@@ -3,6 +3,9 @@ frontend:
   phases:
     preBuild:
       commands:
+        - echo PEXELS_API_KEY=$PEXELS_API_KEY > .env.production
+        - echo UNSPLASH_ACCESS_KEY=$UNSPLASH_ACCESS_KEY >> .env.production
+        - echo UNSPLASH_SECRET_KEY=$UNSPLASH_SECRET_KEY >> .env.production
         - npm install
     build:
       commands:
