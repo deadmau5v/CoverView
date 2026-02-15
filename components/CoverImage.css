@@ -1,0 +1,10 @@
+.cover-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cover-dimensions {
+  display: flex;
+  overflow: hidden;
+}

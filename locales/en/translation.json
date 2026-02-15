@@ -1,0 +1,188 @@
+{
+  "common": {
+    "title": "Title",
+    "author": "Author",
+    "download": "Download",
+    "preview": "Preview",
+    "settings": "Settings"
+  },
+  "header": {
+    "tagline": "Create beautiful cover images for your blogs",
+    "getStarted": "Get Started",
+    "faq": "FAQ",
+    "home": "Home",
+    "starOnGithub": "⭐ Star on GitHub",
+    "shareOnTwitter": "Share on Twitter",
+    "codeOfConduct": "Code of Conduct"
+  },
+  "editor": {
+    "title": "Article Title",
+    "titlePlaceholder": "Enter title here",
+    "author": "Author",
+    "authorPlaceholder": "Enter author name",
+    "icon": "Icon",
+    "selectIcon": "Select Icon",
+    "customUpload": "Upload Custom Icon",
+    "uploadPrompt": "Click to select file",
+    "uploadFormats": "Supports PNG, JPG, SVG",
+    "uploadSuccess": "✓ Icon uploaded",
+    "theme": "Theme",
+    "colorTheme": "Color Theme",
+    "pattern": "Pattern",
+    "font": "Font",
+    "fontSize": "Font Size",
+    "fontSizes": {
+      "small": "Small (2XL)",
+      "medium": "Medium (3XL)",
+      "large": "Large (4XL)",
+      "larger": "Larger (5XL)",
+      "extraLarge": "Extra Large (6XL)",
+      "huge": "Huge (7XL)",
+      "massive": "Massive (8XL)",
+      "maximum": "Maximum (9XL)"
+    },
+    "size": "Size",
+    "canvasSize": "Canvas Size",
+    "customSize": "Custom Size",
+    "currentSize": "Current size",
+    "width": "Width (px)",
+    "height": "Height (px)",
+    "downloadFormat": "Download Format",
+    "searchBackground": "Search Background Image",
+    "randomTheme": "Random Theme",
+    "resetAll": "Reset All",
+    "themes": "Themes"
+  },
+  "themes": {
+    "background": "Background",
+    "stylish": "Stylish",
+    "basic": "Basic",
+    "modern": "Modern",
+    "outline": "Outline",
+    "preview": "Preview",
+    "mobile": "Mobile Mockup"
+  },
+  "colorThemes": {
+    "oneDark": "One Dark",
+    "catppuccinLatte": "Catppuccin Latte",
+    "catppuccinFrappe": "Catppuccin Frappé",
+    "catppuccinMacchiato": "Catppuccin Macchiato",
+    "catppuccinMocha": "Catppuccin Mocha",
+    "nord": "Nord",
+    "tokyoNight": "Tokyo Night",
+    "gruvbox": "Gruvbox",
+    "solarized": "Solarized",
+    "dracula": "Dracula"
+  },
+  "fonts": {
+    "inter": "Inter",
+    "poppins": "Poppins",
+    "anek": "Anek Latin",
+    "nunito": "Nunito",
+    "serif": "Serif",
+    "sans": "Sans-serif",
+    "mono": "Monospace"
+  },
+  "sizes": {
+    "16:9": "16:9 (1280×720)",
+    "4:3": "4:3 (1024×768)",
+    "16:10": "16:10 (1280×800)",
+    "1:1": "1:1 (800×800)",
+    "3:2": "3:2 (1200×800)",
+    "custom": "Custom"
+  },
+  "patterns": {
+    "none": "None",
+    "dots": "Dots",
+    "zigzag": "Zigzag",
+    "cross": "Cross",
+    "diagonal": "Diagonal"
+  },
+  "home": {
+    "hero": {
+      "title": "Making cover images for your blogs is now super easy",
+      "cta": "Create Now"
+    },
+    "section1": {
+      "title": "Why are cover images more important than you think?",
+      "feature1": {
+        "description": "Around <1>7 million</1> blog posts are published daily, and with the rise of new writing tools, this number keeps growing."
+      },
+      "feature2": {
+        "description": "Quality covers bring <1>higher conversion rates</1> compared to randomly selected stock photos."
+      }
+    },
+    "section2": {
+      "title": "With coverview, you can create covers in <1>just seconds</1>",
+      "step1Title": "Step 1",
+      "step1Description": "Fill in blog title and author name",
+      "step2Title": "Step 2",
+      "step2Description": "Customize with colors, fonts, and icons",
+      "step3Title": "Step 3",
+      "step3Description": "Choose your style from different themes",
+      "step3Subtitle": "Unsplash integration, custom icons, build your personal brand."
+    },
+    "section3": {
+      "title": "Supported platforms",
+      "description": "Works with Hashnode, Dev.to, and more"
+    },
+    "footer": {
+      "tagline": "Simple, Fast, Easy to Use",
+      "subtitle": "Focus on writing, no more worrying about cover images.",
+      "cta": "Try it free, start now →",
+      "builtBy": "Built with 💛 by",
+      "and": "and",
+      "links": {
+        "guide": "User Guide",
+        "codeOfConduct": "Code of Conduct",
+        "github": "GitHub"
+      }
+    },
+    "features": {
+      "title": "Features",
+      "fast": {
+        "title": "Lightning Fast",
+        "description": "Create professional covers in seconds"
+      },
+      "themes": {
+        "title": "Multiple Themes",
+        "description": "Choose from 7 beautiful themes"
+      },
+      "customization": {
+        "title": "Highly Customizable",
+        "description": "9 color themes, multiple fonts and sizes"
+      },
+      "icons": {
+        "title": "Dev Icons",
+        "description": "100+ icons or upload your own"
+      }
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "q1": {
+      "question": "How do I download the cover image?",
+      "answer": "Click the Download button to save the image as PNG or WEBP."
+    },
+    "q2": {
+      "question": "Can I use custom images?",
+      "answer": "Yes! You can search Unsplash images or upload your own icon."
+    },
+    "q3": {
+      "question": "Is it free to use?",
+      "answer": "Yes, CoverView is completely free and open source."
+    }
+  },
+  "unsplash": {
+    "searchPlaceholder": "Search images...",
+    "searching": "Searching...",
+    "noResults": "No results found",
+    "photoBy": "Photo by"
+  },
+  "messages": {
+    "downloading": "Downloading...",
+    "copied": "Copied to clipboard",
+    "error": "An error occurred",
+    "loading": "Loading..."
+  }
+}
