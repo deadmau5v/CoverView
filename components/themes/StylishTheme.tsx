@@ -3,6 +3,7 @@
 import React from "react";
 import { useImgContext } from "@/hooks/useImgContext";
 import UnsplashSearch from "../UnsplashSearch";
+import { BackgroundEffect, GRADIENT_PRESETS, getOverlayGradientById } from "@/lib/backgroundPresets";
 
 interface StylishThemeProps {
   config: {
@@ -15,16 +16,42 @@ interface StylishThemeProps {
   };
 }
 
+function getImageEffectStyle(effect: BackgroundEffect): React.CSSProperties {
+  switch (effect) {
+    case "softBlur":
+      return { filter: "blur(3px)", transform: "scale(1.03)" };
+    case "strongBlur":
+      return { filter: "blur(7px)", transform: "scale(1.07)" };
+    case "glass":
+      return { filter: "blur(4px) saturate(1.08)", transform: "scale(1.05)" };
+    case "none":
+    default:
+      return {};
+  }
+}
+
 export default function StylishTheme({ config }: StylishThemeProps) {
   const { title, author, font, fontSize, icon, customIcon } = config;
-  const { unsplashImage, setUnsplashImage, themeColors } = useImgContext();
+  const {
+    unsplashImage,
+    setUnsplashImage,
+    themeColors,
+    backgroundEffect,
+    imageOverlayGradient,
+  } = useImgContext();
 
   const source = unsplashImage?.source || "unsplash";
+  const isGradientSource = source === "gradient";
   const sourceUrl =
     source === "pexels"
       ? "https://www.pexels.com/"
-      : "https://unsplash.com/?utm_source=https://coverview.vercel.app&utm_medium=referral";
-  const sourceName = source === "pexels" ? "Pexels" : "Unsplash";
+      : source === "unsplash"
+        ? "https://unsplash.com/?utm_source=https://coverview.vercel.app&utm_medium=referral"
+        : "";
+  const sourceName = source === "pexels" ? "Pexels" : source === "unsplash" ? "Unsplash" : "Gradient";
+  const overlayPreset = getOverlayGradientById(imageOverlayGradient);
+  const showOverlayGradient = !isGradientSource && overlayPreset.css !== "none";
+  const gradientBackground = unsplashImage?.gradient || GRADIENT_PRESETS[0].css;
 
   return (
     <div className="h-full w-full bg-white">
@@ -48,17 +75,15 @@ export default function StylishTheme({ config }: StylishThemeProps) {
               </h1>
               <div className="flex items-center gap-4 text-left">
                 {customIcon ? (
-                  <div className="">
-                    <img
-                      src={customIcon}
-                      alt="img"
-                      className="h-12 w-12 rounded-full border"
-                      style={{
-                        backgroundColor: themeColors.card,
-                        borderColor: themeColors.border,
-                      }}
-                    />
-                  </div>
+                  <img
+                    src={customIcon}
+                    alt="img"
+                    className="h-12 w-12 rounded-full border"
+                    style={{
+                      backgroundColor: themeColors.card,
+                      borderColor: themeColors.border,
+                    }}
+                  />
                 ) : (
                   <div className="flex items-center justify-center">
                     <i
@@ -78,12 +103,39 @@ export default function StylishTheme({ config }: StylishThemeProps) {
           </div>
           <div className="h-full w-1/2">
             {unsplashImage ? (
-              <div className="group relative flex h-full w-full">
-                <img
-                  src={unsplashImage.url && unsplashImage.url}
-                  className="h-full w-full object-cover"
-                  alt="preview"
-                />
+              <div className="group relative flex h-full w-full overflow-hidden">
+                <div className="absolute inset-0 overflow-hidden">
+                  {isGradientSource ? (
+                    <div
+                      className="h-full w-full"
+                      style={{
+                        backgroundImage: gradientBackground,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={unsplashImage.url}
+                      className="h-full w-full object-cover transition-all duration-500"
+                      style={getImageEffectStyle(backgroundEffect)}
+                      alt="preview"
+                    />
+                  )}
+                </div>
+
+                {showOverlayGradient && (
+                  <div
+                    className="pointer-events-none absolute inset-0"
+                    style={{ backgroundImage: overlayPreset.css }}
+                  />
+                )}
+
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/32 via-transparent to-black/38" />
+
+                {backgroundEffect === "glass" && !isGradientSource && (
+                  <div className="pointer-events-none absolute inset-0 bg-white/6 backdrop-blur-[1px]" />
+                )}
 
                 <button
                   onClick={() => setUnsplashImage(null)}
@@ -105,45 +157,49 @@ export default function StylishTheme({ config }: StylishThemeProps) {
                   </svg>
                 </button>
 
-                <div className="absolute bottom-4 right-4 opacity-80">
-                  <div className="hidden items-center group-hover:flex">
-                    <span className="mx-2 text-sm text-white">Photo by</span>
-                    {unsplashImage.avatar && (
-                      <a
-                        href={unsplashImage.profile}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex cursor-pointer items-center rounded-full bg-gray-300 text-sm"
-                      >
-                        <img
-                          src={unsplashImage.avatar}
-                          alt={unsplashImage.name}
-                          className="mr-2 h-6 w-6 rounded-full"
-                        />
-                        <span className="pr-2">{unsplashImage.name}</span>
-                      </a>
-                    )}
-                    {!unsplashImage.avatar && (
-                      <a
-                        href={unsplashImage.profile}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="rounded-full bg-gray-300 px-2 py-1 text-sm text-gray-800"
-                      >
-                        {unsplashImage.name}
-                      </a>
-                    )}
+                {!isGradientSource && (
+                  <div className="absolute bottom-4 right-4 opacity-80">
+                    <div className="hidden items-center group-hover:flex">
+                      <span className="mx-2 text-sm text-white">Photo by</span>
+                      {unsplashImage.avatar && (
+                        <a
+                          href={unsplashImage.profile}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex cursor-pointer items-center rounded-full bg-gray-300 text-sm"
+                        >
+                          <img
+                            src={unsplashImage.avatar}
+                            alt={unsplashImage.name}
+                            className="mr-2 h-6 w-6 rounded-full"
+                          />
+                          <span className="pr-2">{unsplashImage.name}</span>
+                        </a>
+                      )}
+                      {!unsplashImage.avatar && (
+                        <a
+                          href={unsplashImage.profile}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="rounded-full bg-gray-300 px-2 py-1 text-sm text-gray-800"
+                        >
+                          {unsplashImage.name}
+                        </a>
+                      )}
 
-                    <a
-                      href={sourceUrl}
-                      className="mx-2 text-sm text-white"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {sourceName}
-                    </a>
+                      {sourceUrl && (
+                        <a
+                          href={sourceUrl}
+                          className="mx-2 text-sm text-white"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {sourceName}
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             ) : (
               <div

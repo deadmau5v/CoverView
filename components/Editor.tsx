@@ -11,6 +11,11 @@ import Header from "./Header";
 import { useTranslation } from "react-i18next";
 import { THEMES } from "@/lib/constants";
 import { getThemeOptions } from "@/lib/colorThemes";
+import {
+  BACKGROUND_EFFECT_OPTIONS,
+  BackgroundEffect,
+  IMAGE_OVERLAY_PRESETS,
+} from "@/lib/backgroundPresets";
 import "@/app/patterns.css";
 
 const defaultIcon = { label: "react", value: "react" };
@@ -80,6 +85,50 @@ function ThemeSelector({ t }: { t: (key: string) => string }) {
         className="items-center text-base text-gray-700 outline-none focus:outline-none"
       />
     </div>
+  );
+}
+
+function BackgroundStyleSelector({ theme }: { theme: string }) {
+  const { backgroundEffect, setBackgroundEffect, imageOverlayGradient, setImageOverlayGradient } =
+    useImgContext();
+  const isImageTheme = theme === "background" || theme === "stylish";
+
+  if (!isImageTheme) {
+    return null;
+  }
+
+  return (
+    <>
+      <div className="flex flex-col">
+        <span className="pb-2 text-sm font-medium">背景效果</span>
+        <select
+          value={backgroundEffect}
+          onChange={(event) => setBackgroundEffect(event.target.value as BackgroundEffect)}
+          className="w-full rounded border border-gray-300 p-2.5 text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
+        >
+          {BACKGROUND_EFFECT_OPTIONS.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="flex flex-col">
+        <span className="pb-2 text-sm font-medium">图片渐变</span>
+        <select
+          value={imageOverlayGradient}
+          onChange={(event) => setImageOverlayGradient(event.target.value)}
+          className="w-full rounded border border-gray-300 p-2.5 text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
+        >
+          {IMAGE_OVERLAY_PRESETS.map((preset) => (
+            <option key={preset.id} value={preset.id}>
+              {preset.label}
+            </option>
+          ))}
+        </select>
+      </div>
+    </>
   );
 }
 
@@ -267,6 +316,7 @@ export default function Editor() {
               </div>
 
               <ThemeSelector t={t} />
+              <BackgroundStyleSelector theme={settings.theme} />
 
               <div className="flex flex-col">
                 <span className="pb-2 text-sm font-medium">{t("editor.size")}</span>

@@ -73,6 +73,9 @@ export default function ComponentToImg({ children, downloadAs = "WEBP" }: Compon
     if (!unsplashImage) return;
 
     const source = unsplashImage.source || "unsplash";
+    if (source === "gradient" || !unsplashImage.downloadLink) {
+      return;
+    }
     const apiUrl = source === "pexels" ? "/api/pexels/download" : "/api/unsplash/download";
 
     try {
