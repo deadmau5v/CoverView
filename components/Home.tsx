@@ -4,7 +4,6 @@ import React from "react";
 import { useTranslation, Trans } from "react-i18next";
 import Image from "next/image";
 import Link from "next/link";
-import WallOfLove from "./WallOfLove";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Home() {
@@ -38,12 +37,26 @@ export default function Home() {
           <h1 className="mx-6 my-10 text-center font-Anek text-4xl font-extrabold text-gray-700 md:mx-10 md:w-7/12 md:text-5xl">
             {t("home.hero.title")}
           </h1>
-          <Link
-            href="/editor"
-            className="group mx-auto rounded-full border-4 border-gray-100 bg-gray-700 p-2 px-6 font-Poppins text-base font-semibold text-white duration-300 hover:translate-x-2 hover:bg-gray-800 md:p-4 md:px-8 md:text-2xl"
-          >
-            <span className="text-lg font-semibold md:text-2xl">{t("home.hero.cta")}</span>
-          </Link>
+          <div className="mx-auto flex flex-col items-center gap-3 md:flex-row">
+            <Link
+              href="/editor"
+              className="group rounded-full border-4 border-gray-100 bg-gray-700 p-2 px-6 font-Poppins text-base font-semibold text-white duration-300 hover:translate-x-2 hover:bg-gray-800 md:p-4 md:px-8 md:text-2xl"
+            >
+              <span className="text-lg font-semibold md:text-2xl">{t("home.hero.cta")}</span>
+            </Link>
+            <Link
+              href="/image-converter"
+              className="rounded-full border-2 border-indigo-200 bg-white px-6 py-2 font-Poppins text-base font-semibold text-indigo-600 duration-300 hover:translate-x-2 hover:border-indigo-300 hover:bg-indigo-50 md:px-8 md:py-4 md:text-xl"
+            >
+              {t("home.hero.imageConverterCta", { defaultValue: "Image Converter" })}
+            </Link>
+            <Link
+              href="/icon-generator"
+              className="rounded-full border-2 border-teal-200 bg-white px-6 py-2 font-Poppins text-base font-semibold text-teal-600 duration-300 hover:translate-x-2 hover:border-teal-300 hover:bg-teal-50 md:px-8 md:py-4 md:text-xl"
+            >
+              {t("home.hero.iconGeneratorCta", { defaultValue: "ICO Generator" })}
+            </Link>
+          </div>
         </div>
 
         <div className="mx-auto flex flex-row items-center justify-center md:w-10/12">
@@ -257,8 +270,6 @@ export default function Home() {
           </div>
         </div>
 
-        <WallOfLove />
-
         <div className="bg-gray-800 p-2 text-white">
           <div className="mx-auto p-6 pt-32 md:w-8/12">
             <h2 className="mx-auto text-center font-Anek text-4xl font-bold md:text-6xl">
@@ -304,6 +315,12 @@ export default function Home() {
               </Link>
               <Link href="/code-of-conduct" className="hover:underline">
                 {t("home.footer.links.codeOfConduct")}
+              </Link>
+              <Link href="/image-converter" className="hover:underline">
+                {t("home.footer.links.imageConverter", { defaultValue: "Image Converter" })}
+              </Link>
+              <Link href="/icon-generator" className="hover:underline">
+                {t("home.footer.links.iconGenerator", { defaultValue: "ICO Generator" })}
               </Link>
               <a
                 href="https://github.com/deadmau5v/CoverView"

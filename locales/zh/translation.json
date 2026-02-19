@@ -101,7 +101,9 @@
   "home": {
     "hero": {
       "title": "为你的博客制作封面现在超级简单",
-      "cta": "立即创建"
+      "cta": "立即创建",
+      "imageConverterCta": "图片转换器",
+      "iconGeneratorCta": "ICO 生成器"
     },
     "section1": {
       "title": "为什么封面图片比你想的更重要？",
@@ -135,6 +137,8 @@
       "links": {
         "guide": "使用指南",
         "codeOfConduct": "行为准则",
+        "imageConverter": "图片转换器",
+        "iconGenerator": "ICO 生成器",
         "github": "GitHub"
       }
     },
@@ -156,6 +160,77 @@
         "title": "开发图标",
         "description": "100+ 图标或上传自己的"
       }
+    }
+  },
+  "converter": {
+    "backHome": "返回首页",
+    "openEditor": "打开封面编辑器",
+    "openIconGenerator": "打开 ICO 生成器",
+    "title": "图片转换器",
+    "subtitle": "纯前端转换工具。支持剪贴板粘贴、拖拽上传、选择输出格式并控制压缩率。",
+    "inputTitle": "输入图片",
+    "reset": "重置",
+    "dropzone": {
+      "primary": "将图片拖到这里，或点击上传",
+      "secondary": "支持剪贴板粘贴、PNG、JPG、WEBP 等格式"
+    },
+    "sourceAlt": "原图预览",
+    "pasteHint": "提示：在任意位置按 Ctrl/Cmd + V 可粘贴剪贴板图片。",
+    "loadingSource": "正在读取图片...",
+    "outputTitle": "输出设置",
+    "formatLabel": "目标格式",
+    "formats": {
+      "png": "PNG（无损）",
+      "jpeg": "JPG（有损压缩）",
+      "webp": "WEBP（有损压缩）"
+    },
+    "qualityLabel": "压缩质量",
+    "qualityHintPng": "PNG 为无损格式，质量滑块不会影响输出。",
+    "qualityHint": "数值越低体积越小，数值越高画质越好。",
+    "converting": "转换中...",
+    "convert": "开始转换",
+    "resultTitle": "转换结果",
+    "download": "下载转换后的图片",
+    "errors": {
+      "notImage": "请选择图片文件。",
+      "loadFailed": "图片加载失败，请尝试其他文件。",
+      "dropFailed": "拖拽内容中未检测到图片。",
+      "convertFailed": "当前格式转换失败，请尝试其他格式。"
+    }
+  },
+  "iconGenerator": {
+    "backHome": "返回首页",
+    "openEditor": "打开封面编辑器",
+    "openConverter": "打开图片转换器",
+    "title": "ICO 图标生成器",
+    "subtitle": "上传、粘贴或拖拽一张图片，裁剪为方形后导出多种尺寸的 ICO 文件。",
+    "inputTitle": "源图标",
+    "reset": "重置",
+    "dropzone": {
+      "primary": "将图片拖到这里，或点击上传",
+      "secondary": "支持剪贴板粘贴与拖拽上传"
+    },
+    "sourceAlt": "原图预览",
+    "pasteHint": "提示：在任意位置按 Ctrl/Cmd + V 可粘贴剪贴板图片。",
+    "loadingSource": "正在读取图片...",
+    "cropTitle": "裁剪与导出",
+    "cropEmpty": "请先上传图片，再设置裁剪和图标尺寸。",
+    "previewLabel": "裁剪预览（256x256）",
+    "centerCrop": "居中裁剪",
+    "cropSize": "裁剪尺寸",
+    "cropX": "水平偏移",
+    "cropY": "垂直偏移",
+    "sizeLabel": "ICO 尺寸",
+    "generate": "生成 ICO 文件",
+    "generating": "生成中...",
+    "resultTitle": "生成结果",
+    "downloadBundle": "下载多尺寸合并包（.ico）",
+    "errors": {
+      "notImage": "请选择图片文件。",
+      "loadFailed": "图片加载失败，请尝试其他文件。",
+      "dropFailed": "拖拽内容中未检测到图片。",
+      "noSize": "请至少选择一个图标尺寸。",
+      "generateFailed": "图标文件生成失败，请重试。"
     }
   },
   "faq": {

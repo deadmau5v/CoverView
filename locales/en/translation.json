@@ -101,7 +101,9 @@
   "home": {
     "hero": {
       "title": "Making cover images for your blogs is now super easy",
-      "cta": "Create Now"
+      "cta": "Create Now",
+      "imageConverterCta": "Image Converter",
+      "iconGeneratorCta": "ICO Generator"
     },
     "section1": {
       "title": "Why are cover images more important than you think?",
@@ -135,6 +137,8 @@
       "links": {
         "guide": "User Guide",
         "codeOfConduct": "Code of Conduct",
+        "imageConverter": "Image Converter",
+        "iconGenerator": "ICO Generator",
         "github": "GitHub"
       }
     },
@@ -156,6 +160,77 @@
         "title": "Dev Icons",
         "description": "100+ icons or upload your own"
       }
+    }
+  },
+  "converter": {
+    "backHome": "Back to Home",
+    "openEditor": "Open Cover Editor",
+    "openIconGenerator": "Open ICO Generator",
+    "title": "Image Converter",
+    "subtitle": "Pure frontend conversion. Paste from clipboard, drag and drop, pick format, then control compression quality.",
+    "inputTitle": "Input Image",
+    "reset": "Reset",
+    "dropzone": {
+      "primary": "Drop image here or click to upload",
+      "secondary": "Supports clipboard paste, PNG, JPG, WEBP and more"
+    },
+    "sourceAlt": "Source image preview",
+    "pasteHint": "Tip: Press Ctrl/Cmd + V anywhere to paste clipboard image.",
+    "loadingSource": "Reading image...",
+    "outputTitle": "Output Settings",
+    "formatLabel": "Target Format",
+    "formats": {
+      "png": "PNG (lossless)",
+      "jpeg": "JPG (compressed)",
+      "webp": "WEBP (compressed)"
+    },
+    "qualityLabel": "Compression Quality",
+    "qualityHintPng": "PNG is lossless, quality slider does not change output.",
+    "qualityHint": "Lower value = smaller size, higher value = better quality.",
+    "converting": "Converting...",
+    "convert": "Convert Image",
+    "resultTitle": "Converted Result",
+    "download": "Download Converted Image",
+    "errors": {
+      "notImage": "Please provide an image file.",
+      "loadFailed": "Image loading failed, please try another file.",
+      "dropFailed": "No image found in dropped content.",
+      "convertFailed": "Conversion failed for this format. Try another format."
+    }
+  },
+  "iconGenerator": {
+    "backHome": "Back to Home",
+    "openEditor": "Open Cover Editor",
+    "openConverter": "Open Image Converter",
+    "title": "ICO Icon Generator",
+    "subtitle": "Upload, paste, or drag an image. Crop to square, then export multiple ICO files in different sizes.",
+    "inputTitle": "Source Icon",
+    "reset": "Reset",
+    "dropzone": {
+      "primary": "Drop image here or click to upload",
+      "secondary": "Supports clipboard paste and drag upload"
+    },
+    "sourceAlt": "Source image preview",
+    "pasteHint": "Tip: Press Ctrl/Cmd + V anywhere to paste clipboard image.",
+    "loadingSource": "Reading image...",
+    "cropTitle": "Crop and Export",
+    "cropEmpty": "Upload an image first to configure crop and icon sizes.",
+    "previewLabel": "Crop Preview (256x256)",
+    "centerCrop": "Center Crop",
+    "cropSize": "Crop Size",
+    "cropX": "Horizontal Offset",
+    "cropY": "Vertical Offset",
+    "sizeLabel": "ICO Sizes",
+    "generate": "Generate ICO Files",
+    "generating": "Generating...",
+    "resultTitle": "Generated Icons",
+    "downloadBundle": "Download multi-size bundle (.ico)",
+    "errors": {
+      "notImage": "Please provide an image file.",
+      "loadFailed": "Image loading failed, please try another file.",
+      "dropFailed": "No image found in dropped content.",
+      "noSize": "Select at least one icon size.",
+      "generateFailed": "Failed to generate icon files. Please try again."
     }
   },
   "faq": {
