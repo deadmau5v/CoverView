@@ -10,7 +10,7 @@
 ## Build, Test, and Development Commands
 - `npm install` resolves dependencies.
 - `npm run dev` starts the Next.js development server at `http://localhost:3000`.
-- `npm run build` creates an optimized production build in `.next/`.
+- `npm run build` creates an optimized production build in `.next/` and generates OpenNext artifacts in `.open-next/`.
 - `npm run start` starts the production server.
 - `npm run deploy` builds and deploys to Cloudflare via OpenNext.
 
