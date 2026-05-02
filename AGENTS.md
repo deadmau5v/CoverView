@@ -12,6 +12,7 @@
 - `npm run dev` starts the Next.js development server at `http://localhost:3000`.
 - `npm run build` creates an optimized production build in `.next/`.
 - `npm run start` starts the production server.
+- `npm run deploy` builds and deploys to Cloudflare via OpenNext.
 
 ## Coding Style & Naming Conventions
 - Prefer functional React components in `PascalCase.tsx`.
@@ -24,6 +25,6 @@
 - PRs should supply a brief changelog and testing notes.
 
 ## Environment & Configuration
-- Store secrets in `.env.local`.
+- Store secrets in `.env.local` or `.dev.vars` (for Wrangler).
 - Unsplash search requires `UNSPLASH_ACCESS_KEY`.
 - Pexels search requires `PEXELS_API_KEY`.
