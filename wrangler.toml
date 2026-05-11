@@ -1,0 +1,9 @@
+# Cloudflare Pages configuration for CoverView
+name = "coverview"
+pages_build_output_dir = ".vercel/output/static"
+compatibility_date = "2025-05-11"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+compatibility_date = "2025-05-11"
+compatibility_flags = ["nodejs_compat"]

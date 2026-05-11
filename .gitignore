@@ -27,3 +27,7 @@ yarn-error.log*
 # Next.js
 *.tsbuildinfo
 next-env.d.ts
+
+# Cloudflare Pages
+/.vercel
+/.wrangler
